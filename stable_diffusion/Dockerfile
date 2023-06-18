@@ -43,6 +43,7 @@ RUN apt update && \
         rsync \
         vim \
         unzip \
+        p7zip-full \
         htop \
         pkg-config \
         libcairo2-dev \
