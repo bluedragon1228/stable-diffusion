@@ -1709,5 +1709,12 @@
     "dreambooth_interface/Disable Logging/visible": true,
     "dreambooth_interface/Disable Logging/value": false,
     "dreambooth_interface/LoRA use buggy requires grad/visible": true,
-    "dreambooth_interface/LoRA use buggy requires grad/value": false
+    "dreambooth_interface/LoRA use buggy requires grad/value": false,
+    "txt2img/Hires prompt/visible": true,
+    "txt2img/Hires prompt/value": "",
+    "txt2img/Hires negative prompt/visible": true,
+    "txt2img/Hires negative prompt/value": "",
+    "txt2img/Preview as Input/value": false,
+    "img2img/Preview as Input/value": false,
+    "deforum_interface/Use Upscaled/value": false
 }
