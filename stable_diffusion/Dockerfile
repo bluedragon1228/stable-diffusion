@@ -142,6 +142,11 @@ RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
+# Install CivitAI Model Downloader
+RUN git clone https://github.com/ashleykleynhans/civitai-downloader.git && \
+    mv civitai-downloader/download.sh /usr/local/bin/download-model && \
+    chmod +x /usr/local/bin/download-model
+
 # Move Stable Diffusion, Kohya_ss and venv to the root
 # so it doesn't conflict with Network Volumes
 WORKDIR /workspace
