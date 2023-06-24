@@ -68,7 +68,7 @@ then
     echo "   ---------------------------------------------"
     echo "   cd /workspace/kohya_ss"
     echo "   deactivate"
-    echo "   ./gui.sh --listen 0.0.0.0 --server_port 3010"
+    echo "   ./gui.sh --listen 0.0.0.0 --server_port 3010 --headless"
 else
     mkdir -p /workspace/logs
     echo "Starting Stable Diffusion Web UI"
@@ -80,7 +80,7 @@ else
 
     echo "Starting Kohya_ss Web UI"
     source ${KOHYA_VENV}/bin/activate
-    cd /workspace/kohya_ss && nohup ./gui.sh --listen 0.0.0.0 --server_port 3010 > /workspace/logs/kohya_ss.log &
+    cd /workspace/kohya_ss && nohup ./gui.sh --listen 0.0.0.0 --server_port 3010 --headless > /workspace/logs/kohya_ss.log &
     echo "Kohya_ss started"
     echo "Log file: /workspace/logs/kohya_ss.log"
     deactivate
