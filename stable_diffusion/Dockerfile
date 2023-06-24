@@ -132,7 +132,7 @@ WORKDIR /workspace/kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv ${KOHYA_VENV} && \
     source ${KOHYA_VENV}/bin/activate && \
-    pip3 install -r requirements_runpod.txt && \
+    pip3 install -r requirements_linux.txt && \
     pip3 install . && \
     pip3 cache purge && \
     deactivate
