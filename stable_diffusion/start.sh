@@ -20,8 +20,14 @@ echo "Syncing Kohya_ss to workspace, please wait..."
 rsync -au --remove-source-files /kohya_ss/ /workspace/kohya_ss/
 rm -rf /kohya_ss
 
+# Link model and VAE
 ln -s /sd-models/v1-5-pruned.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/v1-5-pruned.safetensors
 ln -s /sd-models/vae-ft-mse-840000-ema-pruned.safetensors workspace/stable-diffusion-webui/models/VAE/vae-ft-mse-840000-ema-pruned.safetensors
+
+# Configure accelerate
+echo "Configuring accelerate..."
+mkdir -p /root/.cache/huggingface/accelerate
+mv /accelerate.yaml /root/.cache/huggingface/accelerate/default_config.yaml
 
 if [[ ${PUBLIC_KEY} ]]
 then
