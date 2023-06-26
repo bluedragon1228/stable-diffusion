@@ -13,7 +13,7 @@
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.206
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.7.10
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.7.14
 * Torch 2.0.1
 * xformers 0.0.20
 * v1-5-pruned.safetensors
