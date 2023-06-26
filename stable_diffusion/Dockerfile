@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as runtime
 
 ARG WEBUI_VERSION=v1.3.2
 ARG DREAMBOOTH_COMMIT=dc413a14379b165355502d9f65856c40a4bb5b6f
-ARG KOHYA_VERSION=v21.7.14
+ARG KOHYA_VERSION=v21.7.15
 ARG MAIN_VENV=/workspace/venv
 ARG KOHYA_VENV=/workspace/kohya_ss/venv
 
@@ -133,7 +133,7 @@ RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv ${KOHYA_VENV} && \
     source ${KOHYA_VENV}/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.20 bitsandbytes==0.39.1 accelerate==0.19.0 tensorboard==2.12.1 tensorflow==2.12.0 && \
+    pip3 install --no-cache-dir xformers==0.0.20 bitsandbytes==0.35.0 accelerate==0.19.0 tensorboard==2.12.1 tensorflow==2.12.0 && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
     pip3 cache purge && \
@@ -160,6 +160,9 @@ RUN mv /workspace/stable-diffusion-webui /stable-diffusion-webui
 COPY webui-user.sh /stable-diffusion-webui/
 COPY config.json /stable-diffusion-webui/
 COPY ui-config.json /stable-diffusion-webui/
+
+# Copy requirements for Runpod to resolve issue with bitsandbytes 0.39.1
+COPY requirements_runpod.txt /kohya_ss/
 
 # Set up the container startup script
 COPY start.sh /start.sh
