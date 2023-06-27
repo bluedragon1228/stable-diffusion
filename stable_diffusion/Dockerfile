@@ -10,7 +10,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Africa/Johannesburg \
     PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=on \
     SHELL=/bin/bash
 
 # Add Stable Diffusion 1.5 model and VAE
@@ -133,6 +132,7 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Install Kohya_ss
+ENV PIP_NO_CACHE_DIR=on
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
