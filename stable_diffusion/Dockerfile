@@ -132,7 +132,6 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Install Kohya_ss
-ENV PIP_NO_CACHE_DIR=on
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
