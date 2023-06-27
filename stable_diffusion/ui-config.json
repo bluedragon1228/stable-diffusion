@@ -1716,5 +1716,7 @@
     "txt2img/Hires negative prompt/value": "",
     "txt2img/Preview as Input/value": false,
     "img2img/Preview as Input/value": false,
-    "deforum_interface/Use Upscaled/value": false
+    "deforum_interface/Use Upscaled/value": false,
+    "txt2img/\u2195\ufe0f/visible": true,
+    "img2img/\u2195\ufe0f/visible": true
 }
