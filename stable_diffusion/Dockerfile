@@ -72,14 +72,14 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     git reset ${WEBUI_VERSION} --hard
 
 WORKDIR /stable-diffusion-webui
-RUN python3 -m venv --system-site-packages venv && \
-    source venv/bin/activate && \
+RUN python3 -m venv --system-site-packages /venv && \
+    source /venv/bin/activate && \
     pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip install --no-cache-dir xformers && \
     deactivate
 
 # Install Jupyter
-RUN source venv/bin/activate && \
+RUN source /venv/bin/activate && \
     pip3 install jupyterlab \
         ipywidgets \
         jupyter-archive \
@@ -93,7 +93,7 @@ RUN source venv/bin/activate && \
 COPY requirements.txt ./requirements.txt
 COPY requirements_versions.txt ./requirements_versions.txt
 COPY install.py ./install.py
-RUN source venv/bin/activate && \
+RUN source /venv/bin/activate && \
     python -m install --skip-torch-cuda-test && \
     deactivate
 
@@ -105,7 +105,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon
 
 # Install depenencies for Deforum and ControlNet
-RUN source venv/bin/activate && \
+RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
@@ -120,13 +120,13 @@ RUN git checkout main && \
 # Install the dependencies for the Dreambooth extension
 WORKDIR /stable-diffusion-webui
 COPY requirements_dreambooth.txt ./requirements.txt
-RUN source venv/bin/activate && \
+RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
     deactivate
 
 # Fix Tensorboard
-RUN source venv/bin/activate && \
+RUN source /venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard tensorflow && \
     pip3 cache purge && \
@@ -139,7 +139,7 @@ RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv --system-site-packag venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.20 bitsandbytes==0.35.0 accelerate==0.19.0 tensorboard==2.12.1 tensorflow==2.12.0 && \
+    pip3 install --no-cache-dir xformers==0.0.20 bitsandbytes==0.35.0 accelerate==0.15.0 tensorboard==2.12.1 tensorflow==2.12.0 && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
     pip3 cache purge && \
@@ -164,6 +164,8 @@ COPY ui-config.json /stable-diffusion-webui/
 COPY start.sh /start.sh
 RUN chmod a+x /start.sh
 COPY accelerate.yaml /accelerate.yaml
+COPY fix_venv.sh /fix_venv.sh
+RUN chmod +x /fix_venv.sh
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
