@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
-export MAIN_VENV=/workspace/venv
-export KOHYA_VENV=/workspace/kohya_ss/venv
 export PYTHONUNBUFFERED=1
 
 echo "Container is running"
-
-# Sync venv to workspace to support Network volumes
-echo "Syncing venv to workspace, please wait..."
-rsync -au /venv/ /workspace/venv/
-rm -rf /venv
 
 # Sync Web UI to workspace to support Network volumes
 echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
@@ -45,8 +38,9 @@ then
     ln -sf /examples /workspace
     ln -sf /root/welcome.ipynb /workspace
 
+    cd /workspace/stable-diffusion-webui
+    source venv/bin/activate
     cd /
-    source ${MAIN_VENV}/bin/activate
     nohup jupyter lab --allow-root \
         --no-browser \
         --port=8888 \
@@ -67,7 +61,7 @@ then
     echo "   Stable Diffusion Web UI:"
     echo "   ---------------------------------------------"
     echo "   cd /workspace/stable-diffusion-webui"
-    echo "   deactivate && source /workspace/venv/activate"
+    echo "   deactivate && source venv/bin/activate"
     echo "   ./webui.sh -f"
     echo ""
     echo "   Kohya_ss"
@@ -78,15 +72,17 @@ then
 else
     mkdir -p /workspace/logs
     echo "Starting Stable Diffusion Web UI"
-    source ${MAIN_VENV}/bin/activate
-    cd /workspace/stable-diffusion-webui && nohup ./webui.sh -f > /workspace/logs/webui.log 2>&1 &
+    cd /workspace/stable-diffusion-webui
+    source venv/bin/activate
+    nohup ./webui.sh -f > /workspace/logs/webui.log 2>&1 &
     echo "Stable Diffusion Web UI started"
     echo "Log file: /workspace/logs/webui.log"
     deactivate
 
     echo "Starting Kohya_ss Web UI"
-    source ${KOHYA_VENV}/bin/activate
-    cd /workspace/kohya_ss && nohup ./gui.sh --listen 0.0.0.0 --server_port 3010 --headless > /workspace/logs/kohya_ss.log 2>&1 &
+    cd /workspace/kohya_ss
+    source venv/bin/activate
+    nohup ./gui.sh --listen 0.0.0.0 --server_port 3010 --headless > /workspace/logs/kohya_ss.log 2>&1 &
     echo "Kohya_ss started"
     echo "Log file: /workspace/logs/kohya_ss.log"
     deactivate
@@ -99,7 +95,8 @@ if [ ${ENABLE_TENSORBOARD} ]; then
     mkdir -p /workspace/logs/dreambooth
     ln -s /workspace/stable-diffusion-webui/models/dreambooth /workspace/logs/dreambooth
     ln -s /workspace/stable-diffusion-webui/textual_inversion /workspace/logs/ti
-    source ${MAIN_VENV}/bin/activate
+    cd /workspace/stable-diffusion-webui
+    source venv/bin/activate
     nohup tensorboard --logdir=/workspace/logs --port=6006 --host=0.0.0.0 &
     deactivate
     echo "Tensorboard Started"

@@ -5,8 +5,6 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 ARG WEBUI_VERSION=v1.4.0
 ARG DREAMBOOTH_COMMIT=dc413a14379b165355502d9f65856c40a4bb5b6f
 ARG KOHYA_VERSION=v21.7.16
-ARG MAIN_VENV=/venv
-ARG KOHYA_VENV=/kohya_ss/venv
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -66,15 +64,6 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python && \
 # Stage 2: Install applications
 FROM base as setup
 
-# Create and use the main Python venv
-RUN python3 -m venv ${MAIN_VENV}
-
-# Install Torch
-RUN source ${MAIN_VENV}/bin/activate && \
-    pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip install --no-cache-dir xformers && \
-    deactivate
-
 # Clone the git repo of the Stable Diffusion Web UI by Automatic1111
 # and set version
 WORKDIR /
@@ -82,8 +71,15 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
     git reset ${WEBUI_VERSION} --hard
 
+WORKDIR /stable-diffusion-webui
+RUN python3 -m venv --system-site-packages venv && \
+    source venv/bin/activate && \
+    pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
+    pip install --no-cache-dir xformers && \
+    deactivate
+
 # Install Jupyter
-RUN source ${MAIN_VENV}/bin/activate && \
+RUN source venv/bin/activate && \
     pip3 install jupyterlab \
         ipywidgets \
         jupyter-archive \
@@ -94,11 +90,10 @@ RUN source ${MAIN_VENV}/bin/activate && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
-WORKDIR /stable-diffusion-webui
 COPY requirements.txt ./requirements.txt
 COPY requirements_versions.txt ./requirements_versions.txt
 COPY install.py ./install.py
-RUN source ${MAIN_VENV}/bin/activate && \
+RUN source venv/bin/activate && \
     python -m install --skip-torch-cuda-test && \
     deactivate
 
@@ -110,7 +105,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon
 
 # Install depenencies for Deforum and ControlNet
-RUN source ${MAIN_VENV}/bin/activate && \
+RUN source venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
@@ -123,13 +118,15 @@ RUN git checkout main && \
     git reset ${DREAMBOOTH_COMMIT} --hard
 
 # Install the dependencies for the Dreambooth extension
+WORKDIR /stable-diffusion-webui
 COPY requirements_dreambooth.txt ./requirements.txt
-RUN source ${MAIN_VENV}/bin/activate && \
+RUN source venv/bin/activate && \
+    cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
     deactivate
 
 # Fix Tensorboard
-RUN source ${MAIN_VENV}/bin/activate && \
+RUN source venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard tensorflow && \
     pip3 cache purge && \
@@ -139,8 +136,8 @@ RUN source ${MAIN_VENV}/bin/activate && \
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
-    python3 -m venv ${KOHYA_VENV} && \
-    source ${KOHYA_VENV}/bin/activate && \
+    python3 -m venv --system-site-packag venv && \
+    source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers==0.0.20 bitsandbytes==0.35.0 accelerate==0.19.0 tensorboard==2.12.1 tensorflow==2.12.0 && \
     pip3 install -r requirements.txt && \
