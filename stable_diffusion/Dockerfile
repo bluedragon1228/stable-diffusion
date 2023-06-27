@@ -1,14 +1,18 @@
+# Stage 1: Base
 FROM ashleykza/stable-diffusion-models:1.0.0 as sd-models
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as runtime
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.3.2
 ARG DREAMBOOTH_COMMIT=dc413a14379b165355502d9f65856c40a4bb5b6f
-ARG KOHYA_VERSION=v21.7.15
-ARG MAIN_VENV=/workspace/venv
-ARG KOHYA_VENV=/workspace/kohya_ss/venv
+ARG KOHYA_VERSION=v21.7.16
+ARG MAIN_VENV=/venv
+ARG KOHYA_VENV=/kohya_ss/venv
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-ENV DEBIAN_FRONTEND noninteractive\
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Africa/Johannesburg \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=on \
     SHELL=/bin/bash
 
 # Add Stable Diffusion 1.5 model and VAE
@@ -17,7 +21,7 @@ COPY --from=sd-models /v1-5-pruned.safetensors /sd-models/v1-5-pruned.safetensor
 COPY --from=sd-models /vae-ft-mse-840000-ema-pruned.safetensors /sd-models/vae-ft-mse-840000-ema-pruned.safetensors
 
 # Create workspace working directory
-WORKDIR /workspace
+WORKDIR /
 
 # Install Ubuntu packages
 RUN apt update && \
@@ -59,6 +63,9 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py | python && \
     rm -f get-pip.py
 
+# Stage 2: Install applications
+FROM base as setup
+
 # Create and use the main Python venv
 RUN python3 -m venv ${MAIN_VENV}
 
@@ -70,21 +77,24 @@ RUN source ${MAIN_VENV}/bin/activate && \
 
 # Clone the git repo of the Stable Diffusion Web UI by Automatic1111
 # and set version
-WORKDIR /workspace
+WORKDIR /
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
-    cd /workspace/stable-diffusion-webui && \
+    cd /stable-diffusion-webui && \
     git reset ${WEBUI_VERSION} --hard
 
-# Complete Jupyter installation
+# Install Jupyter
 RUN source ${MAIN_VENV}/bin/activate && \
-    pip3 install jupyterlab ipywidgets jupyter-archive jupyter_contrib_nbextensions && \
+    pip3 install jupyterlab \
+        ipywidgets \
+        jupyter-archive \
+        jupyter_contrib_nbextensions \
+        gdown && \
     jupyter contrib nbextension install --user && \
     jupyter nbextension enable --py widgetsnbextension && \
-    pip3 install gdown && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
-WORKDIR /workspace/stable-diffusion-webui
+WORKDIR /stable-diffusion-webui
 COPY requirements.txt ./requirements.txt
 COPY requirements_versions.txt ./requirements_versions.txt
 COPY install.py ./install.py
@@ -101,14 +111,14 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
 
 # Install depenencies for Deforum and ControlNet
 RUN source ${MAIN_VENV}/bin/activate && \
-    cd /workspace/stable-diffusion-webui/extensions/deforum && \
+    cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
-    cd /workspace/stable-diffusion-webui/extensions/sd-webui-controlnet && \
+    cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
     pip3 install -r requirements.txt && \
     deactivate
 
 # Set Dreambooth extension version
-WORKDIR /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension
+WORKDIR /stable-diffusion-webui/extensions/sd_dreambooth_extension
 RUN git checkout main && \
     git reset ${DREAMBOOTH_COMMIT} --hard
 
@@ -126,9 +136,8 @@ RUN source ${MAIN_VENV}/bin/activate && \
     deactivate
 
 # Install Kohya_ss
-ENV TZ=Africa/Johannesburg
-RUN git clone https://github.com/bmaltais/kohya_ss.git /workspace/kohya_ss
-WORKDIR /workspace/kohya_ss
+RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
+WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv ${KOHYA_VENV} && \
     source ${KOHYA_VENV}/bin/activate && \
@@ -149,20 +158,10 @@ RUN git clone https://github.com/ashleykleynhans/civitai-downloader.git && \
     mv civitai-downloader/download.sh /usr/local/bin/download-model && \
     chmod +x /usr/local/bin/download-model
 
-# Move Stable Diffusion, Kohya_ss and venv to the root
-# so it doesn't conflict with Network Volumes
-WORKDIR /workspace
-RUN mv /workspace/venv /venv
-RUN mv /workspace/kohya_ss /kohya_ss
-RUN mv /workspace/stable-diffusion-webui /stable-diffusion-webui
-
 # Copy Stable Diffusion Web UI config files
 COPY webui-user.sh /stable-diffusion-webui/
 COPY config.json /stable-diffusion-webui/
 COPY ui-config.json /stable-diffusion-webui/
-
-# Copy requirements for Runpod to resolve issue with bitsandbytes 0.39.1
-COPY requirements_runpod.txt /kohya_ss/
 
 # Set up the container startup script
 COPY start.sh /start.sh
