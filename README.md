@@ -13,6 +13,11 @@
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.227
+* [Additional networks extension](
+  https://github.com/kohya-ss/sd-webui-additional-networks)
+* [Locon extension](
+  https://github.com/ashleykleynhans/a1111-sd-webui-locon)
+* [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.7.16
 * Torch 2.0.1
 * xformers 0.0.20

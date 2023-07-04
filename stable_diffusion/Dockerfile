@@ -101,14 +101,17 @@ RUN source /venv/bin/activate && \
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
     git clone https://github.com/deforum-art/sd-webui-deforum extensions/deforum && \
     git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
-    git clone https://github.com/kohya-ss/sd-webui-additional-networks && \
-    git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon
+    git clone https://github.com/kohya-ss/sd-webui-additional-networks extensions/sd-webui-additional-networks && \
+    git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon extensions/a1111-sd-webui-locon && \
+    git clone https://github.com/s0md3v/sd-webui-roop extensions/sd-webui-roop
 
-# Install depenencies for Deforum and ControlNet
+# Install depenencies for Deforum, ControlNet and roop
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
+    pip3 install -r requirements.txt && \
+    cd /stable-diffusion-webui/extensions/sd-webui-roop && \
     pip3 install -r requirements.txt && \
     deactivate
 
