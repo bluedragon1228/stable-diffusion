@@ -249,5 +249,16 @@
     "controlnet_show_batch_images_in_ui": false,
     "controlnet_increment_seed_during_batch": false,
     "controlnet_disable_control_type": false,
-    "controlnet_disable_openpose_edit": false
+    "controlnet_disable_openpose_edit": false,
+    "additional_networks_extra_lora_path": "",
+    "additional_networks_sort_models_by": "name",
+    "additional_networks_reverse_sort_order": false,
+    "additional_networks_model_name_filter": "",
+    "additional_networks_xy_grid_model_metadata": "",
+    "additional_networks_hash_thread_count": 1.0,
+    "additional_networks_back_up_model_when_saving": true,
+    "additional_networks_show_only_safetensors": false,
+    "additional_networks_show_only_models_with_metadata": "disabled",
+    "additional_networks_max_top_tags": 20.0,
+    "additional_networks_max_dataset_folders": 20.0
 }
