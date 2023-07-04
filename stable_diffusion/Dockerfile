@@ -24,6 +24,7 @@ WORKDIR /
 RUN apt update && \
     apt -y upgrade && \
     apt install -y --no-install-recommends \
+        build-essential \
         software-properties-common \
         python3.10-venv \
         python3-tk \
