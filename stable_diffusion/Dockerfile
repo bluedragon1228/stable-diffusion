@@ -28,6 +28,7 @@ RUN apt update && \
         software-properties-common \
         python3.10-venv \
         python3-tk \
+        python3-dev \
         bash \
         git \
         ncdu \
