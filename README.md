@@ -12,7 +12,7 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.227
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.229
 * [Additional networks extension](
   https://github.com/kohya-ss/sd-webui-additional-networks)
 * [Locon extension](
