@@ -120,7 +120,9 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Cache the SD 1.5 model
-python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors
+RUN source /venv/bin/activate && \
+    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
+    deactivate
 
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
