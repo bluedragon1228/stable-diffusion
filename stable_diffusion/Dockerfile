@@ -145,15 +145,13 @@ RUN git checkout ${KOHYA_VERSION} && \
     deactivate
 
 # Install Jupyter
-RUN source /venv/bin/activate && \
-    pip3 install jupyterlab \
+RUN pip3 install jupyterlab \
         ipywidgets \
         jupyter-archive \
         jupyter_contrib_nbextensions \
         gdown && \
     jupyter contrib nbextension install --user && \
-    jupyter nbextension enable --py widgetsnbextension && \
-    deactivate
+    jupyter nbextension enable --py widgetsnbextension
 
 # Install runpodctl
 RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
