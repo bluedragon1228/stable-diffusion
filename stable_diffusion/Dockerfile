@@ -176,6 +176,7 @@ COPY readme.html /usr/share/nginx/html/readme.html
 COPY README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
+WORKDIR /
 COPY pre_start.sh start.sh fix_venv.sh accelerate.yaml ./
 RUN chmod +x /start.sh && \
     chmod +x /pre_start.sh && \
