@@ -11,7 +11,7 @@ install_dir="/workspace"
 
 # Commandline arguments for webui.py, for example: export COMMANDLINE_ARGS="--medvram --opt-split-attention"
 # xformers is enabled to to generate Dreambooth class images, its better to disable it for training if you can.
-export COMMANDLINE_ARGS="--port 3000 --skip-install --listen --api --xformers --enable-insecure-extension-access"
+export COMMANDLINE_ARGS="--port 3001 --skip-install --listen --api --xformers --enable-insecure-extension-access"
 #export XFORMERS_PACKAGE="xformers==0.0.17.dev447"
 
 # python3 executable

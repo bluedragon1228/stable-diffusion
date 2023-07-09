@@ -3,8 +3,8 @@ FROM ashleykza/stable-diffusion-models:1.0.0 as sd-models
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.4.0
-ARG DREAMBOOTH_COMMIT=dc413a14379b165355502d9f65856c40a4bb5b6f
-ARG KOHYA_VERSION=v21.7.16
+ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
+ARG KOHYA_VERSION=v21.8.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -32,6 +32,7 @@ RUN apt update && \
         bash \
         git \
         ncdu \
+        nginx \
         net-tools \
         openssh-server \
         libglib2.0-0 \
@@ -80,23 +81,11 @@ RUN python3 -m venv --system-site-packages /venv && \
     pip install --no-cache-dir xformers && \
     deactivate
 
-# Install Jupyter
-RUN source /venv/bin/activate && \
-    pip3 install jupyterlab \
-        ipywidgets \
-        jupyter-archive \
-        jupyter_contrib_nbextensions \
-        gdown && \
-    jupyter contrib nbextension install --user && \
-    jupyter nbextension enable --py widgetsnbextension && \
-    deactivate
-
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
-COPY requirements.txt ./requirements.txt
-COPY requirements_versions.txt ./requirements_versions.txt
-COPY install.py ./install.py
+COPY requirements.txt requirements_versions.txt ./
+COPY cache-sd-model.py install-automatic.py ./
 RUN source /venv/bin/activate && \
-    python -m install --skip-torch-cuda-test && \
+    python -m install-automatic --skip-torch-cuda-test && \
     deactivate
 
 # Clone the Automatic1111 Extensions
@@ -130,6 +119,9 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     deactivate
 
+# Cache the SD 1.5 model
+python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors
+
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
@@ -150,6 +142,17 @@ RUN git checkout ${KOHYA_VERSION} && \
     pip3 cache purge && \
     deactivate
 
+# Install Jupyter
+RUN source /venv/bin/activate && \
+    pip3 install jupyterlab \
+        ipywidgets \
+        jupyter-archive \
+        jupyter_contrib_nbextensions \
+        gdown && \
+    jupyter contrib nbextension install --user && \
+    jupyter nbextension enable --py widgetsnbextension && \
+    deactivate
+
 # Install runpodctl
 RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
     chmod a+x runpodctl && \
@@ -161,16 +164,20 @@ RUN git clone https://github.com/ashleykleynhans/civitai-downloader.git && \
     chmod +x /usr/local/bin/download-model
 
 # Copy Stable Diffusion Web UI config files
-COPY webui-user.sh /stable-diffusion-webui/
-COPY config.json /stable-diffusion-webui/
-COPY ui-config.json /stable-diffusion-webui/
+COPY relauncher.py webui-user.sh config.json ui-config.json /stable-diffusion-webui/
+
+# NGINX Proxy
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY readme.html /usr/share/nginx/html/readme.html
+
+# Copy the README.md
+COPY README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
-COPY start.sh /start.sh
-RUN chmod a+x /start.sh
-COPY accelerate.yaml /accelerate.yaml
-COPY fix_venv.sh /fix_venv.sh
-RUN chmod +x /fix_venv.sh
+COPY pre_start.sh start.sh fix_venv.sh accelerate.yaml ./
+RUN chmod +x /start.sh && \
+    chmod +x /pre_start.sh && \
+    chmod +x /fix_venv.sh
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
