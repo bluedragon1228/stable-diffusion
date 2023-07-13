@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.4.0
 ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
-ARG KOHYA_VERSION=v21.8.0
+ARG KOHYA_VERSION=v21.8.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -168,7 +168,7 @@ COPY relauncher.py webui-user.sh config.json ui-config.json /stable-diffusion-we
 
 # NGINX Proxy
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY readme.html /usr/share/nginx/html/readme.html
+COPY 502.html /usr/share/nginx/html/502.html
 
 # Copy the README.md
 COPY README.md /usr/share/nginx/html/README.md
