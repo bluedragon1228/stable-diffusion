@@ -1,4 +1,4 @@
-# Docker image for Stable Diffusion WebUI and Dreambooth extension
+# Docker image for Stable Diffusion WebUI and ControlNet, Dreambooth, Deforum and roop extensions, as well as Kohya_ss
 
 ## Installs
 
