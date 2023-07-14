@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI with ControlNet, Deforum, Dreambooth, roop extensions + Kohya SS
 
-### Version 1.5.2
+### Version 1.5.3
 
 ### Included in this Template
 
@@ -20,7 +20,7 @@
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.7.16
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.2
 * Torch 2.0.1
 * xformers 0.0.20
 * v1-5-pruned.safetensors
