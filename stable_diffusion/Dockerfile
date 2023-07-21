@@ -27,6 +27,7 @@ RUN apt update && \
         build-essential \
         software-properties-common \
         python3.10-venv \
+        python3-pip \
         python3-tk \
         python3-dev \
         bash \
@@ -59,10 +60,8 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/* && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
-# Set Python and pip
-RUN ln -s /usr/bin/python3.10 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/get-pip.py | python && \
-    rm -f get-pip.py
+# Set Python
+RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Stage 2: Install applications
 FROM base as setup
@@ -150,13 +149,11 @@ RUN git checkout ${KOHYA_VERSION} && \
     deactivate
 
 # Install Jupyter
-RUN pip3 install jupyterlab \
+RUN pip3 install -U --no-cache-dir jupyterlab \
+        jupyterlab_widgets \
+        ipykernel \
         ipywidgets \
-        jupyter-archive \
-        jupyter_contrib_nbextensions \
-        gdown && \
-    jupyter contrib nbextension install --user && \
-    jupyter nbextension enable --py widgetsnbextension
+        gdown
 
 # Install runpodctl
 RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
