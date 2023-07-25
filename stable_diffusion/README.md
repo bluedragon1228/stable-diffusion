@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI with ControlNet, Deforum, Dreambooth, roop extensions + Kohya SS
 
-### Version 1.5.3
+### Version 1.6.0 with SDXL support
 
 ### Included in this Template
 
@@ -8,13 +8,13 @@
 * CUDA 11.8
 * Python 3.10.6
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.4.0
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.5.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.229
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.233
 * [Additional networks extension](
   https://github.com/kohya-ss/sd-webui-additional-networks)
 * [Locon extension](
@@ -28,12 +28,20 @@
 
 ### Ports
 
-| Port | Description             |
-|------|-------------------------|
-| 3000 | Stable Diffusion Web UI |
-| 3010 | Kohya_ss                |
-| 6006 | Tensorboard             |
-| 8888 | Jupyter Lab             |
+| Connect Port | Internal Port | Description             |
+|--------------|---------------|-------------------------|
+| 3000         | 3001          | Stable Diffusion Web UI |
+| 3010         | 3011          | Kohya_ss                |
+| 6006         | 6066          | Tensorboard             |
+| 8888         | 8888          | Jupyter Lab             |
+
+If you want to stop the application and restart it, use
+`fuser -k` on the Internal Port, not the Connect Port, for
+example to stop the Stable Diffusion Web UI:
+
+```bash
+fuser -k 3001/tcp
+```
 
 ### Environment Variables
 
@@ -62,7 +70,7 @@ tail -f /workspace/logs/webui.log
 
 ### Jupyter Lab
 
-If you wish to use the Jupyter lab, you must set 
+If you wish to use the Jupyter lab, you must set
 the `JUPYTER_PASSWORD` environment variable in the
 Template Overrides configuration when deploying
 your pod.
@@ -101,9 +109,9 @@ which is located in the webui directory
 launch flags such as `--xformers`. You can feel free
 to edit this file, and then restart your pod via the
 hamburger menu to get them to go into effect, or
-alternatively just use `fuser -k 3000/tcp` and start
+alternatively just use `fuser -k 3001/tcp` and start
 the `/workspace/stable-diffusion-webui/webui.sh -f`
-script again.  
+script again.
 
 `--xformers` and `--api` are parameters that are
 frequently asked about.
@@ -122,4 +130,3 @@ things to Google Drive, you can use this colab to do it
 using `runpodctl`. You run the `runpodctl` either in
 a web terminal (found in the pod connect menu), or
 in a terminal on the desktop.
-
