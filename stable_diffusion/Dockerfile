@@ -2,7 +2,7 @@
 FROM ashleykza/stable-diffusion-models:1.0.0 as sd-models
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG WEBUI_VERSION=v1.5.0
+ARG WEBUI_VERSION=v1.5.1
 ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
 ARG KOHYA_VERSION=v21.8.2
 
