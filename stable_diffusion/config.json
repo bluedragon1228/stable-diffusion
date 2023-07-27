@@ -282,5 +282,6 @@
     "keyedit_move": true,
     "add_user_name_to_info": false,
     "canvas_blur_prompt": false,
-    "control_net_inpaint_blur_sigma": 7
+    "control_net_inpaint_blur_sigma": 7,
+    "control_net_no_high_res_fix": false
 }
