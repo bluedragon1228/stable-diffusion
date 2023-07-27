@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.1
 ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
-ARG KOHYA_VERSION=v21.8.2
+ARG KOHYA_VERSION=v21.8.5
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -139,9 +139,9 @@ RUN git checkout ${KOHYA_VERSION} && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers==0.0.20 \
         bitsandbytes==0.35.0 \
-        accelerate==0.19.0 \
-        tensorboard==2.12.1 \
+        tensorboard==2.12.3 \
         tensorflow==2.12.0 \
+        wheel \
         tensorrt && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
