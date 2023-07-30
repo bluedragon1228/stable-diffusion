@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI with ControlNet, Deforum, Dreambooth, roop extensions + Kohya SS
 
-### Version 1.6.2 with SDXL support
+### Version 1.6.3 with SDXL support
 
 ### Included in this Template
 
@@ -15,8 +15,6 @@
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.233
-* [Additional networks extension](
-  https://github.com/kohya-ss/sd-webui-additional-networks)
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
@@ -49,7 +47,8 @@ fuser -k 3001/tcp
 |--------------------|----------------------------------------------|----------|
 | JUPYTER_PASSWORD   | Password for Jupyter Lab                     | Jup1t3R! |
 | DISABLE_AUTOLAUNCH | Disable Web UIs from launching automatically | enabled  |
-| ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | disabled |
+| ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | enabled  |
+| INSTALL_SDXL       | Install SDXL models, LoRA and VAE            | disabled |
 
 ## Logs
 

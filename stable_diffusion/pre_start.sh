@@ -69,6 +69,12 @@ else
     deactivate
 fi
 
+if [ ${INSTALL_SDXL} ]; then
+  echo "Beginning SDXL installation"
+  /install_sdxl.sh
+  echo "SDXL installation complete"
+fi
+
 if [ ${ENABLE_TENSORBOARD} ]; then
     echo "Starting Tensorboard"
     cd /workspace

@@ -15,8 +15,6 @@ Now with SDXL support.
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.233
-* [Additional networks extension](
-  https://github.com/kohya-ss/sd-webui-additional-networks)
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2

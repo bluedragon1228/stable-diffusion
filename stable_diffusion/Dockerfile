@@ -71,7 +71,7 @@ FROM base as setup
 WORKDIR /
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
-    git reset ${WEBUI_VERSION} --hard
+    git checkout tags/${WEBUI_VERSION}
 
 WORKDIR /stable-diffusion-webui
 RUN python3 -m venv --system-site-packages /venv && \
@@ -91,7 +91,6 @@ RUN source /venv/bin/activate && \
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
     git clone https://github.com/deforum-art/sd-webui-deforum extensions/deforum && \
     git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
-    git clone https://github.com/kohya-ss/sd-webui-additional-networks extensions/sd-webui-additional-networks && \
     git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon extensions/a1111-sd-webui-locon && \
     git clone https://github.com/s0md3v/sd-webui-roop extensions/sd-webui-roop
 
@@ -177,10 +176,11 @@ COPY README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
 WORKDIR /
-COPY pre_start.sh start.sh fix_venv.sh accelerate.yaml ./
+COPY pre_start.sh start.sh fix_venv.sh accelerate.yaml install_sdxl.sh ./
 RUN chmod +x /start.sh && \
     chmod +x /pre_start.sh && \
-    chmod +x /fix_venv.sh
+    chmod +x /fix_venv.sh && \
+    chmod +x /install_sdxl.sh
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
