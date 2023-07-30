@@ -84,8 +84,8 @@ fi
 
 echo "All services have been started"
 
-if [ ${INSTALL_SDXL} ]; then
-  echo "Beginning SDXL installation"
+if [ ${DOWNLOAD_SDXL} ]; then
+  echo "Beginning download of SDXL models"
   /install_sdxl.sh
-  echo "SDXL installation complete"
+  echo "SDXL model download complete"
 fi
