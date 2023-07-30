@@ -85,7 +85,11 @@ fi
 echo "All services have been started"
 
 if [ ${DOWNLOAD_SDXL} ]; then
-  echo "Beginning download of SDXL models"
-  /install_sdxl.sh
-  echo "SDXL model download complete"
+    # Only download the models if they have not already been downloaded previously
+    if [[ ! -e "/workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors" ]];
+    then
+        echo "Beginning download of SDXL models"
+        /download_sdxl_models.sh
+        echo "SDXL model download complete"
+    fi
 fi
