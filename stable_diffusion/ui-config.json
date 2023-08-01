@@ -2034,5 +2034,7 @@
     "img2img/Append png info to prompts/visible": true,
     "img2img/Append png info to prompts/value": false,
     "img2img/PNG info directory/visible": true,
-    "img2img/PNG info directory/value": ""
+    "img2img/PNG info directory/value": "",
+    "deforum_interface/Delete All Inputframes/visible": true,
+    "deforum_interface/Delete All Inputframes/value": false
 }

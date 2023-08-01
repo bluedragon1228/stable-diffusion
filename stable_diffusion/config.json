@@ -73,7 +73,7 @@
     "sd_model_checkpoint": "v1-5-pruned.safetensors [1a189f0be6]",
     "sd_checkpoint_cache": 0,
     "sd_vae_checkpoint_cache": 0,
-    "sd_vae": "vae-ft-mse-840000-ema-pruned.safetensors",
+    "sd_vae": "Automatic",
     "sd_vae_as_default": true,
     "inpainting_mask_weight": 1.0,
     "initial_noise_multiplier": 1.0,
@@ -283,5 +283,7 @@
     "add_user_name_to_info": false,
     "canvas_blur_prompt": false,
     "control_net_inpaint_blur_sigma": 7,
-    "control_net_no_high_res_fix": false
+    "control_net_no_high_res_fix": false,
+    "deforum_preview": "Off",
+    "deforum_preview_interval_frames": 100
 }
