@@ -6,7 +6,7 @@ Now with SDXL support.
 
 * Ubuntu 22.04 LTS
 * CUDA 11.8
-* Python 3.10.6
+* Python 3.10.12
 * [Automatic1111 Stable Diffusion Web UI](
   https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.5.1
 * [Dreambooth extension](
@@ -14,7 +14,7 @@ Now with SDXL support.
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.233
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.234
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
