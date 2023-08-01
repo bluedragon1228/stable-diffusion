@@ -91,5 +91,9 @@ if [ ${DOWNLOAD_SDXL} ]; then
         echo "Beginning download of SDXL models"
         /download_sdxl_models.sh
         echo "SDXL model download complete"
+        echo "Beginning download of SDXL styles"
+        cd /workspace/stable-diffusion-webui/models/dreambooth
+        wget https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.csv
+        echo "SDXL styles download complete"
     fi
 fi
