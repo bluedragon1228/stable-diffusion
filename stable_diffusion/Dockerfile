@@ -89,10 +89,11 @@ RUN source /venv/bin/activate && \
 
 # Clone the Automatic1111 Extensions
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
-    git clone https://github.com/deforum-art/sd-webui-deforum extensions/deforum && \
+    git clone https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
-    git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon extensions/a1111-sd-webui-locon && \
-    git clone https://github.com/s0md3v/sd-webui-roop extensions/sd-webui-roop
+    git clone https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
+    git clone https://github.com/s0md3v/sd-webui-roop.git extensions/sd-webui-roop && \
+    git clone https://github.com/wcde/sd-webui-refiner.git extensions/sd-webui-refiner
 
 # Install depenencies for Deforum, ControlNet and roop
 RUN source /venv/bin/activate && \
