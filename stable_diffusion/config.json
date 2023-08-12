@@ -285,5 +285,11 @@
     "control_net_inpaint_blur_sigma": 7,
     "control_net_no_high_res_fix": false,
     "deforum_preview": "Off",
-    "deforum_preview_interval_frames": 100
+    "deforum_preview_interval_frames": 100,
+    "ad_max_models": 2,
+    "ad_save_previews": false,
+    "ad_save_images_before": false,
+    "ad_only_seleted_scripts": true,
+    "ad_script_names": "dynamic_prompting,dynamic_thresholding,wildcard_recursive,wildcards,lora_block_weight",
+    "ad_bbox_sortby": "None"
 }
