@@ -69,7 +69,7 @@ FROM base as setup
 # Clone the git repo of the Stable Diffusion Web UI by Automatic1111
 # and set version
 WORKDIR /
-RUN git clone --depth=1 https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
     git checkout tags/${WEBUI_VERSION}
 
@@ -88,14 +88,15 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Clone the Automatic1111 Extensions
-RUN git clone --depth=1 https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
+RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
     git clone --depth=1 https://github.com/s0md3v/sd-webui-roop.git extensions/sd-webui-roop && \
-    git clone --depth=1 https://github.com/wcde/sd-webui-refiner.git extensions/sd-webui-refiner
+    git clone --depth=1 https://github.com/wcde/sd-webui-refiner.git extensions/sd-webui-refiner && \
+    git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 
-# Install depenencies for Deforum, ControlNet and roop
+# Install dependencies for Deforum, ControlNet and roop
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
@@ -103,6 +104,12 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-roop && \
     pip3 install -r requirements.txt && \
+    deactivate
+
+# Install dependencies for After Detailer extension
+RUN source /venv/bin/activate && \
+    cd /stable-diffusion-webui/extensions/adetailer && \
+    python -m install && \
     deactivate
 
 # Set Dreambooth extension version
@@ -131,7 +138,7 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Install Kohya_ss
-RUN git clone --depth=1 https://github.com/bmaltais/kohya_ss.git /kohya_ss
+RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv --system-site-packag venv && \
