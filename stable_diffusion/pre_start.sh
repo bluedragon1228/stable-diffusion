@@ -5,17 +5,17 @@ echo "Container is running"
 
 # Sync venv to workspace to support Network volumes
 echo "Syncing venv to workspace, please wait..."
-rsync -au /venv/ /workspace/venv/
+rsync -auP /venv/ /workspace/venv/
 rm -rf /venv
 
 # Sync Web UI to workspace to support Network volumes
 echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
-rsync -au /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
+rsync -auP /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
 rm -rf /stable-diffusion-webui
 
 # Sync Kohya_ss to workspace to support Network volumes
 echo "Syncing Kohya_ss to workspace, please wait..."
-rsync -au /kohya_ss/ /workspace/kohya_ss/
+rsync -auP /kohya_ss/ /workspace/kohya_ss/
 rm -rf /kohya_ss
 
 # Fix the venvs to make them work from /workspace
@@ -68,7 +68,8 @@ else
     deactivate
 fi
 
-if [ ${ENABLE_TENSORBOARD} ]; then
+if [ ${ENABLE_TENSORBOARD} ];
+then
     echo "Starting Tensorboard"
     cd /workspace
     mkdir -p /workspace/logs/ti
@@ -83,7 +84,8 @@ fi
 
 echo "All services have been started"
 
-if [ ${DOWNLOAD_SDXL} ]; then
+if [ "${DOWNLOAD_SDXL}" == "1" ];
+then
     # Only download the models if they have not already been downloaded previously
     if [[ ! -e "/workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors" ]];
     then
