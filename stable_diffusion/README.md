@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI with ControlNet, Deforum, Dreambooth, roop extensions + Kohya SS
 
-### Version 1.6.3 with SDXL support
+### Version 1.7.0 with SDXL support
 
 ### Included in this Template
 
@@ -14,7 +14,9 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.234
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.237
+* [After Detailer extension](
+  https://github.com/Bing-su/adetailer)
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
