@@ -5,17 +5,17 @@ echo "Container is running"
 
 # Sync venv to workspace to support Network volumes
 echo "Syncing venv to workspace, please wait..."
-rsync -auP /venv/ /workspace/venv/
+rsync -au /venv/ /workspace/venv/
 rm -rf /venv
 
 # Sync Web UI to workspace to support Network volumes
 echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
-rsync -auP /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
+rsync -au /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
 rm -rf /stable-diffusion-webui
 
 # Sync Kohya_ss to workspace to support Network volumes
 echo "Syncing Kohya_ss to workspace, please wait..."
-rsync -auP /kohya_ss/ /workspace/kohya_ss/
+rsync -au /kohya_ss/ /workspace/kohya_ss/
 rm -rf /kohya_ss
 
 # Fix the venvs to make them work from /workspace
