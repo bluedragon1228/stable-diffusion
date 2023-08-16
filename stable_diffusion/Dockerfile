@@ -63,6 +63,10 @@ RUN apt update && \
 # Set Python
 RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
+# Install Torch and xformers
+RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
+    pip3 install --no-cache-dir xformers==0.0.20
+
 # Stage 2: Install applications
 FROM base as setup
 
@@ -141,7 +145,7 @@ RUN source /venv/bin/activate && \
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 RUN git checkout ${KOHYA_VERSION} && \
-    python3 -m venv --system-site-packag venv && \
+    python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers==0.0.20 \
@@ -152,6 +156,17 @@ RUN git checkout ${KOHYA_VERSION} && \
         tensorrt && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
+    pip3 cache purge && \
+    deactivate
+
+# Install ComfyUI
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
+WORKDIR /ComfyUI
+RUN python3 -m venv --system-site-packages venv && \
+    source venv/bin/activate && \
+    pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
+    pip3 install --no-cache-dir xformers==0.0.20 && \
+    pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
 
@@ -184,9 +199,10 @@ COPY README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
 WORKDIR /
-COPY pre_start.sh start.sh fix_venv.sh accelerate.yaml download_sdxl_models.sh ./
+COPY pre_start.sh post_start.sh start.sh fix_venv.sh accelerate.yaml download_sdxl_models.sh ./
 RUN chmod +x /start.sh && \
     chmod +x /pre_start.sh && \
+    chmod +x /post_start.sh && \
     chmod +x /fix_venv.sh && \
     chmod +x /download_sdxl_models.sh
 
