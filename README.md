@@ -1,4 +1,4 @@
-# Docker image for Stable Diffusion Web UI, Kohya_ss and ComfyUI
+# Docker image for A1111 Stable Diffusion Web UI, Kohya_ss and ComfyUI
 
 Now with SDXL support.
 
@@ -27,6 +27,9 @@ Now with SDXL support.
 * xformers 0.0.20
 * v1-5-pruned.safetensors
 * vae-ft-mse-840000-ema-pruned.safetensors
+* sd_xl_base_1.0.safetensors
+* sd_xl_refiner_1.0.safetensors
+* sdxl_vae.safetensors
 
 ## Available on RunPod
 
