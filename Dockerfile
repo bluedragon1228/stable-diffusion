@@ -1,5 +1,4 @@
 # Stage 1: Base
-FROM ashleykza/stable-diffusion-models:1.0.0 as sd-models
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.1
@@ -14,8 +13,13 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 # Add Stable Diffusion 1.5 model and VAE
 RUN mkdir -p /sd-models
-COPY --from=sd-models /v1-5-pruned.safetensors /sd-models/v1-5-pruned.safetensors
-COPY --from=sd-models /vae-ft-mse-840000-ema-pruned.safetensors /sd-models/vae-ft-mse-840000-ema-pruned.safetensors
+ADD https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors /sd-models/v1-5-pruned.safetensors
+ADD https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors /sd-models/vae-ft-mse-840000-ema-pruned.safetensors
+
+# Add SDXL models and VAE
+ADD https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors /sd-models/sd_xl_base_1.0.safetensors
+ADD https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors /sd-models/sd_xl_refiner_1.0.safetensors
+ADD https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors /sd-models/sdxl_vae.safetensors
 
 # Create workspace working directory
 WORKDIR /
@@ -190,6 +194,9 @@ RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.gi
 
 # Copy Stable Diffusion Web UI config files
 COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
+
+# ADD SDXL styles.csv
+ADD https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.csv /stable-diffusion-webui/styles.csv
 
 # Copy ComfyUI Extra Model Paths (to share models with A1111)
 COPY comfyui/extra_model_paths.yaml /ComfyUI/
