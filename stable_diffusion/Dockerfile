@@ -171,6 +171,7 @@ RUN python3 -m venv --system-site-packages venv && \
     deactivate
 
 # Install Jupyter
+WORKDIR /
 RUN pip3 install -U --no-cache-dir jupyterlab \
         jupyterlab_widgets \
         ipykernel \
@@ -189,6 +190,9 @@ RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.gi
 
 # Copy Stable Diffusion Web UI config files
 COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
+
+# Copy ComfyUI Extra Model Paths (to share models with A1111)
+COPY comfyui/extra_model_paths.yaml /ComfyUI/
 
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
