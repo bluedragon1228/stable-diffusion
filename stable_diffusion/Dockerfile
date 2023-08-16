@@ -149,7 +149,7 @@ RUN git checkout ${KOHYA_VERSION} && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers==0.0.20 \
-        bitsandbytes==0.35.0 \
+        bitsandbytes==0.41.1 \
         tensorboard==2.12.3 \
         tensorflow==2.12.0 \
         wheel \
