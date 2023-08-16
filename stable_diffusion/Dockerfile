@@ -197,9 +197,7 @@ COPY comfyui/extra_model_paths.yaml /ComfyUI/
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
-
-# Copy the README.md
-COPY README.md /usr/share/nginx/html/README.md
+COPY nginx/README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
 WORKDIR /
