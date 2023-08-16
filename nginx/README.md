@@ -53,7 +53,6 @@ fuser -k 3001/tcp
 | JUPYTER_PASSWORD   | Password for Jupyter Lab                     | Jup1t3R! |
 | DISABLE_AUTOLAUNCH | Disable Web UIs from launching automatically | enabled  |
 | ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | enabled  |
-| DOWNLOAD_SDXL      | Download SDXL models, LoRA and styles.csv    | disabled |
 
 ## Logs
 
