@@ -208,12 +208,11 @@ COPY nginx/README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
 WORKDIR /
-COPY pre_start.sh post_start.sh start.sh fix_venv.sh kohya_ss/accelerate.yaml download_sdxl_models.sh ./
+COPY pre_start.sh post_start.sh start.sh fix_venv.sh kohya_ss/accelerate.yaml ./
 RUN chmod +x /start.sh && \
     chmod +x /pre_start.sh && \
     chmod +x /post_start.sh && \
-    chmod +x /fix_venv.sh && \
-    chmod +x /download_sdxl_models.sh
+    chmod +x /fix_venv.sh
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
