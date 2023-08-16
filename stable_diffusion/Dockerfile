@@ -4,7 +4,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.1
 ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
-ARG KOHYA_VERSION=V21.8.5
+ARG KOHYA_VERSION=V21.8.7
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -85,8 +85,8 @@ RUN python3 -m venv --system-site-packages /venv && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
-COPY requirements.txt requirements_versions.txt ./
-COPY cache-sd-model.py install-automatic.py ./
+COPY a1111/requirements.txt a1111/requirements_versions.txt ./
+COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
 RUN source /venv/bin/activate && \
     python -m install-automatic --skip-torch-cuda-test && \
     deactivate
@@ -123,7 +123,7 @@ RUN git checkout main && \
 
 # Install the dependencies for the Dreambooth extension
 WORKDIR /stable-diffusion-webui
-COPY requirements_dreambooth.txt ./requirements.txt
+COPY a1111/requirements_dreambooth.txt ./requirements.txt
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
@@ -188,18 +188,18 @@ RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.gi
     chmod +x /usr/local/bin/download-model
 
 # Copy Stable Diffusion Web UI config files
-COPY relauncher.py webui-user.sh config.json ui-config.json /stable-diffusion-webui/
+COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
 
 # NGINX Proxy
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY 502.html /usr/share/nginx/html/502.html
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Copy the README.md
 COPY README.md /usr/share/nginx/html/README.md
 
 # Set up the container startup script
 WORKDIR /
-COPY pre_start.sh post_start.sh start.sh fix_venv.sh accelerate.yaml download_sdxl_models.sh ./
+COPY pre_start.sh post_start.sh start.sh fix_venv.sh kohya_ss/accelerate.yaml download_sdxl_models.sh ./
 RUN chmod +x /start.sh && \
     chmod +x /pre_start.sh && \
     chmod +x /post_start.sh && \

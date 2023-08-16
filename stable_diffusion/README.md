@@ -1,6 +1,6 @@
-## Automatic1111 Stable Diffusion WebUI with ControlNet, Deforum, Dreambooth, roop extensions + Kohya SS
+## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 1.7.0 with SDXL support
+### Version 1.8.0 with SDXL support
 
 ### Included in this Template
 
@@ -21,7 +21,7 @@
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [SDXL Refiner extension](https://github.com/wcde/sd-webui-refiner)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.5
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.7
 * Torch 2.0.1
 * xformers 0.0.20
 * v1-5-pruned.safetensors
@@ -33,6 +33,7 @@
 |--------------|---------------|-------------------------|
 | 3000         | 3001          | Stable Diffusion Web UI |
 | 3010         | 3011          | Kohya_ss                |
+| 3020         | 3021          | ComfyUI                 |
 | 6006         | 6066          | Tensorboard             |
 | 8888         | 8888          | Jupyter Lab             |
 
@@ -63,6 +64,7 @@ killing the services to view the logs
 |-------------------------|------------------------------|
 | Stable Diffusion Web UI | /workspace/logs/webui.log    |
 | Kohya SS                | /workspace/logs/kohya_ss.log |
+| ComfyUI                 | /workspace/logs/comfyui.log  |
 
 For example:
 
@@ -84,9 +86,9 @@ encrypted volumes!
 
 This is a custom packaged template for Stable Diffusion
 using the Automatic1111 Web UI, as well as the Dreambooth,
-Deforum, ControlNet and roop extension repos.
+Deforum, ControlNet, ADetailer and roop extension repos.
 
-It also contains the Kohya_ss Web UI.
+It also contains the Kohya_ss Web UI and ComfyUI.
 
 I do not maintain the code for any of these repos,
 I just package everything together so that it is
