@@ -38,6 +38,27 @@ You can use my custom [RunPod template](
 https://runpod.io/gsc?template=ya6013lj5a&ref=2xxro4sy)
 to launch it on RunPod.
 
+## Running Locally
+
+Install the [Nvidia CUDA driver](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+for Linux if you have not already done so, then start a Docker container:
+
+```bash
+docker run -d \
+  --gpus all \
+  -v /workspace \
+  -p 3000:3001 \
+  -p 3010:3011 \
+  -p 3020:3021 \
+  -p 6006:6066 \
+  -p 8888:8888 \
+  -e JUPYTER_PASSWORD=Jup1t3R! \
+  -e ENABLE_TENSORBOARD=1 \
+  ashleykza/stable-diffusion-webui:1.8.0
+```
+
+You can obviously substitute the image name and tag with your own.
+
 ## Acknowledgements
 
 1. [RunPod](https://runpod.io?ref=2xxro4sy) for providing most
