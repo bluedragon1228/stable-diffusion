@@ -40,8 +40,12 @@ to launch it on RunPod.
 
 ## Running Locally
 
-Install the [Nvidia CUDA driver](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
-for Linux if you have not already done so, then start a Docker container:
+### Install Nvidia CUDA Driver
+
+- [Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+- [Windows](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
+
+### Start the Docker container
 
 ```bash
 docker run -d \
