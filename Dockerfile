@@ -2,7 +2,7 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.1
-ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
+ARG DREAMBOOTH_COMMIT=c93ac4efffb4448e3b61b285801d986f708001f3
 ARG KOHYA_VERSION=v21.8.7
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -35,6 +35,7 @@ RUN apt update && \
         python3-tk \
         python3-dev \
         bash \
+        dos2unix \
         git \
         ncdu \
         nginx \
