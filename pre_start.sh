@@ -102,7 +102,7 @@ then
     ln -s /workspace/stable-diffusion-webui/models/dreambooth /workspace/logs/dreambooth
     ln -s /workspace/stable-diffusion-webui/textual_inversion /workspace/logs/ti
     source /workspace/venv/bin/activate
-    nohup tensorboard --logdir=/workspace/logs --port=6066 --host=0.0.0.0 &
+    nohup tensorboard --logdir=/workspace/logs --port=6066 --host=0.0.0.0 > /workspace/logs/tensorboard.log 2>&1 &
     deactivate
     echo "Tensorboard Started"
 fi
