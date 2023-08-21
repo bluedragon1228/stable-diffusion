@@ -188,6 +188,9 @@ RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
+# Install croc
+RUN curl https://getcroc.schollz.com | bash
+
 # Install CivitAI Model Downloader
 RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.git && \
     mv civitai-downloader/download.sh /usr/local/bin/download-model && \
