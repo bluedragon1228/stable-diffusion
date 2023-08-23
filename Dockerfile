@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.1
 ARG DREAMBOOTH_COMMIT=c93ac4efffb4448e3b61b285801d986f708001f3
-ARG KOHYA_VERSION=v21.8.7
+ARG KOHYA_VERSION=v21.8.8
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -101,7 +101,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
-    git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop extensions/sd-webui-roop && \
+    git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop.git extensions/sd-webui-roop && \
     git clone --depth=1 https://github.com/wcde/sd-webui-refiner.git extensions/sd-webui-refiner && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 

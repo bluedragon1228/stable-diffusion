@@ -21,7 +21,7 @@
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [SDXL Refiner extension](https://github.com/wcde/sd-webui-refiner)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.7
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.8
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.20
