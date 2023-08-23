@@ -8,7 +8,7 @@
 * CUDA 11.8
 * Python 3.10.12
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.5.1
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.5.2
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [Deforum extension](
