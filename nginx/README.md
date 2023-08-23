@@ -14,7 +14,7 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.238
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.306
 * [After Detailer extension](
   https://github.com/Bing-su/adetailer) v23.8.0
 * [Locon extension](
@@ -30,6 +30,8 @@
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
 * sdxl_vae.safetensors
+* [runpodctl](https://github.com/runpod/runpodctl)
+* [croc](https://github.com/schollz/croc)
 
 ### Ports
 
