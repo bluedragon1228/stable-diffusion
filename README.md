@@ -40,6 +40,15 @@ You can use my custom [RunPod template](
 https://runpod.io/gsc?template=ya6013lj5a&ref=2xxro4sy)
 to launch it on RunPod.
 
+## Building the Docker image
+
+Since the Stable Diffusion models are pretty large, you will need at least
+8GB of system memory (not GPU VRAM) to build this image.
+
+The image **CAN** be built on a `t3a.large` AWS EC2 instance
+which has 2 x vCPU and 8GB of system memory.  It **CANNOT** be built on
+any instances with less memory, eg. `t3a.medium`.
+
 ## Running Locally
 
 ### Install Nvidia CUDA Driver
