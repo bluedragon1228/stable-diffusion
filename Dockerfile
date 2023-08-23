@@ -101,7 +101,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
-    git clone --depth=1 https://github.com/s0md3v/sd-webui-roop.git extensions/sd-webui-roop && \
+    git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop && \
     git clone --depth=1 https://github.com/wcde/sd-webui-refiner.git extensions/sd-webui-refiner && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 
