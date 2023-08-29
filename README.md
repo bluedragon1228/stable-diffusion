@@ -50,6 +50,28 @@ The image **CAN** be built on a `t3a.large` AWS EC2 instance
 which has 2 x vCPU and 8GB of system memory.  It **CANNOT** be built on
 any instances with less memory, eg. `t3a.medium`.
 
+```bash
+# Clone the repo
+git clone https://github.com/ashleykleynhans/stable-diffusion-docker.git
+
+# Download the models
+cd stable-diffusion-docker
+wget https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors
+wget https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors
+wget https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
+wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors
+wget https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
+
+# Build and tag the image
+docker build -t username/image-name:1.0.0 .
+
+# Log in to Docker Hub
+docker login
+
+# Push the image to Docker Hub
+docker push username/image-name:1.0.0
+```
+
 ## Running Locally
 
 ### Install Nvidia CUDA Driver
