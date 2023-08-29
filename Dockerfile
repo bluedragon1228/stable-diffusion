@@ -30,6 +30,7 @@ RUN apt update && \
         ncdu \
         nginx \
         net-tools \
+        inetutils-ping \
         openssh-server \
         libglib2.0-0 \
         libsm6 \
@@ -203,6 +204,10 @@ RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl
 
 # Install croc
 RUN curl https://getcroc.schollz.com | bash
+
+# Install speedtest CLI
+RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash && \
+    apt install speedtest
 
 # Install CivitAI Model Downloader
 RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.git && \
