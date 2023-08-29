@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 1.8.0 with SDXL support
+### Version 1.8.5 with SDXL support
 
 ### Included in this Template
 
@@ -23,6 +23,7 @@
 * [SDXL Refiner extension](https://github.com/wcde/sd-webui-refiner)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.8
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+* [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
 * Torch 2.0.1
 * xformers 0.0.20
 * v1-5-pruned.safetensors

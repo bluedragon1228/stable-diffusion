@@ -2,7 +2,7 @@
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.5.2
-ARG DREAMBOOTH_COMMIT=c93ac4efffb4448e3b61b285801d986f708001f3
+ARG DREAMBOOTH_COMMIT=c2a5617c587b812b5a408143ddfb18fc49234edf
 ARG KOHYA_VERSION=v21.8.8
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -174,6 +174,9 @@ RUN python3 -m venv --system-site-packages venv && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
+
+# Install ComfyUI Custom Nodes
+RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
 
 # Install Jupyter
 WORKDIR /
