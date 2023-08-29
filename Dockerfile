@@ -144,8 +144,9 @@ RUN source /venv/bin/activate && \
 # Cache the Stable Diffusion Models
 RUN source /venv/bin/activate && \
     python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
-    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
-    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
+# SDXL models result in OOM kills with 8GB system memory, probably need 12GB+ to cache these
+#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
+#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
     deactivate
 
 # Fix Tensorboard
