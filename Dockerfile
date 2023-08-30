@@ -27,6 +27,7 @@ RUN apt update && \
         bash \
         dos2unix \
         git \
+        git-lfs \
         ncdu \
         nginx \
         net-tools \
