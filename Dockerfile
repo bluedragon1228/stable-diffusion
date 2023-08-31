@@ -145,13 +145,14 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     deactivate
 
+# Fails on CPU when Dreambooth extension is installed due to bitsandbytes issue
 # Cache the Stable Diffusion Models
-RUN source /venv/bin/activate && \
-    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
+#RUN source /venv/bin/activate && \
+#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
 # SDXL models result in OOM kills with 8GB system memory, probably need 12GB+ to cache these
 #    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
 #    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
-    deactivate
+#    deactivate
 
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
