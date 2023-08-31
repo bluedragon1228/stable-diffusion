@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG WEBUI_VERSION=v1.5.2
+ARG WEBUI_VERSION=v1.6.0
 ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
 ARG KOHYA_VERSION=v21.8.8
 
@@ -49,9 +49,12 @@ RUN apt update && \
         p7zip-full \
         htop \
         pkg-config \
+        plocate \
         libcairo2-dev \
-        libgoogle-perftools4 libtcmalloc-minimal4 \
-        apt-transport-https ca-certificates && \
+        libgoogle-perftools4 \
+        libtcmalloc-minimal4 \
+        apt-transport-https \
+        ca-certificates && \
     update-ca-certificates && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
