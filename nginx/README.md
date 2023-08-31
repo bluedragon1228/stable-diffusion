@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 1.9.0 with SDXL support
+### Version 1.9.2 with SDXL support
 
 ### Included in this Template
 
@@ -11,6 +11,8 @@
   https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.6.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
+* [Deforum extension](
+  https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.313
 * [After Detailer extension](
