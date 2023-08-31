@@ -108,6 +108,14 @@ RUN source /venv/bin/activate && \
     python -m install-automatic --skip-torch-cuda-test && \
     deactivate
 
+# Cache the Stable Diffusion Models
+RUN source /venv/bin/activate && \
+    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
+# SDXL models result in OOM kills with 8GB system memory, probably need 12GB+ to cache these
+#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
+#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
+    deactivate
+
 # Clone the Automatic1111 Extensions
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
@@ -141,15 +149,6 @@ RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
     deactivate
-
-# Fails on CPU when Dreambooth extension is installed due to bitsandbytes issue
-# Cache the Stable Diffusion Models
-#RUN source /venv/bin/activate && \
-#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/v1-5-pruned.safetensors && \
-# SDXL models result in OOM kills with 8GB system memory, probably need 12GB+ to cache these
-#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
-#    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
-#    deactivate
 
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
