@@ -25,7 +25,7 @@ rm -rf /ComfyUI
 
 # Sync Application Manager to workspace to support Network volumes
 echo "Syncing Application Manager to workspace, please wait..."
-rsync -au /app-manager /workspace/app-manager/
+rsync -au /app-manager/ /workspace/app-manager/
 rm -rf /app-manager
 
 # Fix the venvs to make them work from /workspace
