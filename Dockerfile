@@ -24,6 +24,8 @@ RUN apt update && \
         python3-pip \
         python3-tk \
         python3-dev \
+        nodejs \
+        npm \
         bash \
         dos2unix \
         git \
@@ -191,6 +193,12 @@ RUN python3 -m venv --system-site-packages venv && \
 
 # Install ComfyUI Custom Nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
+
+# Install Application Manager
+WORKDIR /
+RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager && \
+    cd /app-manager && \
+    npm install
 
 # Install Jupyter
 WORKDIR /

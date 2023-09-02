@@ -23,6 +23,11 @@ echo "Syncing ComfyUI to workspace, please wait..."
 rsync -au /ComfyUI/ /workspace/ComfyUI/
 rm -rf /ComfyUI
 
+# Sync Application Manager to workspace to support Network volumes
+echo "Syncing Application Manager to workspace, please wait..."
+rsync -au /app-manager /workspace/app-manager/
+rm -rf /app-manager
+
 # Fix the venvs to make them work from /workspace
 echo "Fixing Stable Diffusion Web UI venv..."
 /fix_venv.sh /venv /workspace/venv
@@ -44,6 +49,10 @@ ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/V
 echo "Configuring accelerate..."
 mkdir -p /root/.cache/huggingface/accelerate
 mv /accelerate.yaml /root/.cache/huggingface/accelerate/default_config.yaml
+
+# Start application manager
+cd /workspace/app-manager
+npm start &
 
 if [[ ${DISABLE_AUTOLAUNCH} ]]
 then
@@ -73,11 +82,9 @@ else
 
     echo "Starting Stable Diffusion Web UI"
     cd /workspace/stable-diffusion-webui
-    source /workspace/venv/bin/activate
     nohup ./webui.sh -f > /workspace/logs/webui.log 2>&1 &
     echo "Stable Diffusion Web UI started"
     echo "Log file: /workspace/logs/webui.log"
-    deactivate
 
     echo "Starting Kohya_ss Web UI"
     cd /workspace/kohya_ss
@@ -91,6 +98,7 @@ else
     python3 main.py --listen 0.0.0.0 --port 3021 > /workspace/logs/comfyui.log 2>&1 &
     echo "ComfyUI started"
     echo "Log file: /workspace/logs/comfyui.log"
+    deactivate
 fi
 
 if [ ${ENABLE_TENSORBOARD} ];
