@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 1.9.2 with SDXL support
+### Version 2.0.0 with SDXL support
 
 ### Included in this Template
 
@@ -22,7 +22,6 @@
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.8
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-* [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
 * Torch 2.0.1
 * xformers 0.0.20
 * v1-5-pruned.safetensors
@@ -32,24 +31,22 @@
 * sdxl_vae.safetensors
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
+* [Application Manager](https://github.com/ashleykleynhans/app-manager)
 
 ### Ports
 
-| Connect Port | Internal Port | Description             |
-|--------------|---------------|-------------------------|
-| 3000         | 3001          | Stable Diffusion Web UI |
-| 3010         | 3011          | Kohya_ss                |
-| 3020         | 3021          | ComfyUI                 |
-| 6006         | 6066          | Tensorboard             |
-| 8888         | 8888          | Jupyter Lab             |
+| Connect Port | Internal Port | Description                   |
+|--------------|---------------|-------------------------------|
+| 3000         | 3001          | A1111 Stable Diffusion Web UI |
+| 3010         | 3011          | Kohya_ss                      |
+| 3020         | 3021          | ComfyUI                       |
+| 6006         | 6066          | Tensorboard                   |
+| 8000         | 8000          | Application Manager           |
+| 8888         | 8888          | Jupyter Lab                   |
 
-If you want to stop the application and restart it, use
-`fuser -k` on the Internal Port, not the Connect Port, for
-example to stop the Stable Diffusion Web UI:
-
-```bash
-fuser -k 3001/tcp
-```
+You can use the Application Manager to stop and start
+the applications.  This can be useful for stopping the
+A1111 Web UI if you want to train using Kohya_ss for example.
 
 ### Environment Variables
 

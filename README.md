@@ -32,6 +32,7 @@ Now with SDXL support.
 * sdxl_vae.safetensors
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
+* [Application Manager](https://github.com/ashleykleynhans/app-manager)
 
 ## Available on RunPod
 
