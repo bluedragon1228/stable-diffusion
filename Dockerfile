@@ -186,7 +186,7 @@ WORKDIR /ComfyUI
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.20 && \
+    pip3 install --no-cache-dir xformers==0.0.21 && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
