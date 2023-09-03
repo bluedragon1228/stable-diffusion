@@ -16,7 +16,7 @@ Now with SDXL support.
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.313
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v23.8.1
+  https://github.com/Bing-su/adetailer) v23.9.1
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
