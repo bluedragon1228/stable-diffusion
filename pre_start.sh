@@ -50,9 +50,12 @@ echo "Configuring accelerate..."
 mkdir -p /root/.cache/huggingface/accelerate
 mv /accelerate.yaml /root/.cache/huggingface/accelerate/default_config.yaml
 
+# Create logs directory
+mkdir -p /workspace/logs
+
 # Start application manager
 cd /workspace/app-manager
-npm start &
+npm start > /workspace/logs/app-manager.log 2>&1 &
 
 if [[ ${DISABLE_AUTOLAUNCH} ]]
 then
@@ -78,8 +81,6 @@ then
     echo "   source venv/bin/activate"
     echo "   python3 main.py --listen 0.0.0.0 --port 3021"
 else
-    mkdir -p /workspace/logs
-
     echo "Starting Stable Diffusion Web UI"
     cd /workspace/stable-diffusion-webui
     nohup ./webui.sh -f > /workspace/logs/webui.log 2>&1 &
