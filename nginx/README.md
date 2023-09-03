@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 2.0.0 with SDXL support
+### Version 2.1.0 with SDXL support
 
 ### Included in this Template
 
@@ -20,7 +20,7 @@
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.8
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.9
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.20
