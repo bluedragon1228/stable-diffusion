@@ -67,7 +67,7 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Install Torch and xformers
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.20
+    pip3 install --no-cache-dir xformers==0.0.21
 
 # Stage 2: Install applications
 FROM base as setup
@@ -169,7 +169,7 @@ RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.20 \
+    pip3 install --no-cache-dir xformers==0.0.21 \
         bitsandbytes==0.41.1 \
         tensorboard==2.12.3 \
         tensorflow==2.12.0 \

@@ -23,7 +23,7 @@
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.9
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
-* xformers 0.0.20
+* xformers 0.0.21
 * v1-5-pruned.safetensors
 * vae-ft-mse-840000-ema-pruned.safetensors
 * sd_xl_base_1.0.safetensors

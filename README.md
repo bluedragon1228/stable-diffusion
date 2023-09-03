@@ -24,7 +24,7 @@ Now with SDXL support.
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
 * Torch 2.0.1
-* xformers 0.0.20
+* xformers 0.0.21
 * v1-5-pruned.safetensors
 * vae-ft-mse-840000-ema-pruned.safetensors
 * sd_xl_base_1.0.safetensors
