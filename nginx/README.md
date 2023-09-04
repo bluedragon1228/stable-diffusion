@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 2.1.0 with SDXL support
+### Version 3.0.0 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -14,7 +14,7 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.313
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.400
 * [After Detailer extension](
   https://github.com/Bing-su/adetailer) v23.9.1
 * [Locon extension](
