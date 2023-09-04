@@ -126,7 +126,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop.git extensions/sd-webui-roop && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 
-# Install dependencies for Deforum, ControlNet and roop extensions
+# Install dependencies for Deforum, ControlNet, roop, and After Detailer extensions
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
@@ -134,10 +134,6 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-roop && \
     pip3 install -r requirements.txt && \
-    deactivate
-
-# Install dependencies for After Detailer extension
-RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python -m install && \
     deactivate
