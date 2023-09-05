@@ -65,9 +65,9 @@ RUN apt update && \
 # Set Python
 RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
-# Install Torch and xformers
+# Install Torch, xformers and tensorrt
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.21
+    pip3 install --no-cache-dir xformers==0.0.21 tensorrt
 
 # Stage 2: Install applications
 FROM base as setup
