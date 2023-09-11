@@ -72,13 +72,7 @@ RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https:/
 # Stage 2: Install applications
 FROM base as setup
 
-# Add Stable Diffusion 1.5 model and VAE
-# These need to already have been downloaded:
-#   wget https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.safetensors
-#   wget https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors
 RUN mkdir -p /sd-models
-COPY v1-5-pruned.safetensors /sd-models/v1-5-pruned.safetensors
-COPY vae-ft-mse-840000-ema-pruned.safetensors /sd-models/vae-ft-mse-840000-ema-pruned.safetensors
 
 # Add SDXL models and VAE
 # These need to already have been downloaded:
