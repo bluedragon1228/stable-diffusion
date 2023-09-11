@@ -14,9 +14,9 @@ Now with SDXL support.
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.401
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.410
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v23.9.1
+  https://github.com/Bing-su/adetailer) v23.9.2
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
@@ -90,7 +90,7 @@ docker run -d \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
-  ashleykza/stable-diffusion-webui:2.1.0
+  ashleykza/stable-diffusion-webui:3.0.2
 ```
 
 You can obviously substitute the image name and tag with your own.
