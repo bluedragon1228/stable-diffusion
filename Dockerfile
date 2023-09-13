@@ -144,6 +144,11 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     deactivate
 
+# Add inswapper model for the roop extension
+RUN mkdir -p /workspace/stable-diffusion-webui/models/roop && \
+    cd /workspace/stable-diffusion-webui/models/roop && \
+    wget https://huggingface.co/ashleykleynhans/inswapper/resolve/main/inswapper_128.onnx
+
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
