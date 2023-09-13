@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.0.0 with SDXL support and ControlNet SDXL support
+### Version 3.0.3 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -27,6 +27,7 @@
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
 * sdxl_vae.safetensors
+* inswapper_128.onnx
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)

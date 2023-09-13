@@ -28,6 +28,7 @@ Now with SDXL support.
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
 * sdxl_vae.safetensors
+* inswapper_128.onnx
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
