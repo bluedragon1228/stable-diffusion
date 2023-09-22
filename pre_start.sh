@@ -38,7 +38,7 @@ echo "Fixing Kohya_ss venv..."
 echo "Fixing ComfyUI venv..."
 /fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
 
-# Link modelS and VAE
+# Link models and VAE
 ln -s /sd-models/sd_xl_base_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors
 ln -s /sd-models/sd_xl_refiner_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors
 ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors

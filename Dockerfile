@@ -202,6 +202,9 @@ RUN pip3 install -U --no-cache-dir jupyterlab \
         ipywidgets \
         gdown
 
+# Install rclone
+RUN curl https://rclone.org/install.sh | bash
+
 # Install runpodctl
 RUN wget https://github.com/runpod/runpodctl/releases/download/v1.10.0/runpodctl-linux-amd -O runpodctl && \
     chmod a+x runpodctl && \
