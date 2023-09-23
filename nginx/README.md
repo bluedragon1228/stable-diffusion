@@ -30,6 +30,7 @@
 * inswapper_128.onnx
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
+* [rclone](https://rclone.org/)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
 
 ### Ports
