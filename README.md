@@ -91,7 +91,7 @@ docker run -d \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
-  ashleykza/stable-diffusion-webui:3.0.4
+  ashleykza/stable-diffusion-webui:3.1.0
 ```
 
 You can obviously substitute the image name and tag with your own.
