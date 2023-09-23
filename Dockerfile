@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.6.0
 ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
-ARG KOHYA_VERSION=v21.8.9
+ARG KOHYA_VERSION=v21.8.10
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -236,9 +236,13 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 COPY nginx/README.md /usr/share/nginx/html/README.md
 
-# Set up the container startup script
 WORKDIR /
-COPY --chmod=755 pre_start.sh start.sh fix_venv.sh kohya_ss/accelerate.yaml ./
+
+# Copy the scripts
+COPY --chmod=755 pre_start.sh start.sh fix_venv.sh download.sh ./
+
+# Copy the accelerate configuration
+COPY kohya_ss/accelerate.yaml ./
 
 # Start the container
 SHELL ["/bin/bash", "--login", "-c"]
