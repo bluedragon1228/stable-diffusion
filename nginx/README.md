@@ -20,7 +20,7 @@
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.0.0
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.10
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.21
