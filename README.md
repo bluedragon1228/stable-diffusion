@@ -20,7 +20,7 @@ Now with SDXL support.
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v21.8.10
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.0.0
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
 * Torch 2.0.1
@@ -92,7 +92,7 @@ docker run -d \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
-  ashleykza/stable-diffusion-webui:3.1.0
+  ashleykza/stable-diffusion-webui:3.2.0
 ```
 
 You can obviously substitute the image name and tag with your own.
