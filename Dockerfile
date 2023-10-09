@@ -67,7 +67,7 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Install Torch, xformers and tensorrt
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.22 tensorrt
+    pip3 install --no-cache-dir --no-dependencies xformers==0.0.22 tensorrt
 
 # Stage 2: Install applications
 FROM base as setup
@@ -94,7 +94,7 @@ WORKDIR /stable-diffusion-webui
 RUN python3 -m venv --system-site-packages /venv && \
     source /venv/bin/activate && \
     pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip install --no-cache-dir xformers && \
+    pip install --no-cache-dir --no-dependencies xformers && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
@@ -170,7 +170,7 @@ RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.22 \
+    pip3 install --no-cache-dir --no-dependencies xformers==0.0.22 \
         bitsandbytes==0.41.1 \
         tensorboard==2.14.1 \
         tensorflow==2.14.0 \
@@ -187,7 +187,7 @@ WORKDIR /ComfyUI
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.22 && \
+    pip3 install --no-cache-dir --no-dependencies xformers==0.0.22 && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
