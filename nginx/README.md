@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.0.4 with SDXL support and ControlNet SDXL support
+### Version 4.0.0 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -16,24 +16,31 @@
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.410
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v23.9.2
+  https://github.com/Bing-su/adetailer) v23.9.3
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
+* [Inpaint Anything extension](https://github.com/Uminosachi/inpaint-anything)
+* [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.0.1
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-* Torch 2.0.1
-* xformers 0.0.21
+* Torch 2.1.0
+* xformers 0.0.22
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
 * sdxl_vae.safetensors
 * inswapper_128.onnx
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
-* [rclone](https://rclone.org/)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
 
 ### Ports
+
+**NOTE:** The first time you create your container, the applications
+will need to sync to the **/workspace** directory.  This can take
+a few minutes to complete.  The ports below will not be accessible
+until such time as the syncing completes and the container logs
+say **Container is READY!**.
 
 | Connect Port | Internal Port | Description                   |
 |--------------|---------------|-------------------------------|
@@ -77,7 +84,7 @@ tail -f /workspace/logs/webui.log
 ### Jupyter Lab
 
 If you wish to use the Jupyter lab, you must set
-the `JUPYTER_PASSWORD` environment variable in the
+the **JUPYTER_PASSWORD** environment variable in the
 Template Overrides configuration when deploying
 your pod.
 
@@ -102,37 +109,20 @@ at Stable Diffusion! I'll try my best to help, but the
 RunPod community or Automatic/Stable Diffusion communities
 may be better at helping you.
 
-Please wait until the GPU Utilization % is 0 before
-attempting to connect. You will likely get a 502 error
-before that as the pod is still getting ready to be used.
-
 ### Changing launch parameters
 
 You may be used to changing a different file for your
-launch parameters. This template uses `webui-user.sh`,
+launch parameters. This template uses **webui-user.sh**,
 which is located in the webui directory
-(`/workspace/stable-diffusion-webui`) to manage the
-launch flags such as `--xformers`. You can feel free
+(**/workspace/stable-diffusion-webui**) to manage the
+launch flags such as **--xformers**. You can feel free
 to edit this file, and then restart your pod via the
 hamburger menu to get them to go into effect, or
-alternatively just use `fuser -k 3001/tcp` and start
-the `/workspace/stable-diffusion-webui/webui.sh -f`
+alternatively just use **fuser -k 3001/tcp** and start
+the **/workspace/stable-diffusion-webui/webui.sh -f**
 script again.
-
-`--xformers` and `--api` are parameters that are
-frequently asked about.
 
 ### Using your own models
 
 The best ways to get your models onto your pod is
-by using `runpodctl` or by uploading them to Google
-Drive or other cloud storage and downloading them
-to your pod from there.
-
-### Uploading to Google Drive
-
-If you're done with the pod and would like to send
-things to Google Drive, you can use this colab to do it
-using `runpodctl`. You run the `runpodctl` either in
-a web terminal (found in the pod connect menu), or
-in a terminal on the desktop.
+by using **runpodctl** or **croc**.

@@ -7,7 +7,7 @@ ARG KOHYA_VERSION=v22.0.1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Africa/Johannesburg \
+    TZ=Europe/London \
     PYTHONUNBUFFERED=1 \
     SHELL=/bin/bash
 
@@ -67,7 +67,7 @@ RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Install Torch, xformers and tensorrt
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.21 tensorrt
+    pip3 install --no-cache-dir xformers==0.0.22 tensorrt
 
 # Stage 2: Install applications
 FROM base as setup
@@ -117,6 +117,8 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
     git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop.git extensions/sd-webui-roop && \
+    git clone --depth=1 https://github.com/zanllp/sd-webui-infinite-image-browsing.git extensions/sd-webui-infinite-image-browsing && \
+    git clone --depth=1 https://github.com/Uminosachi/inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 
 # Install dependencies for Deforum, ControlNet, roop, and After Detailer extensions
@@ -126,6 +128,10 @@ RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-roop && \
+    pip3 install -r requirements.txt && \
+    cd /stable-diffusion-webui/extensions/inpaint-anything && \
+    pip3 install -r requirements.txt && \
+    cd /stable-diffusion-webui/extensions/sd-webui-infinite-image-browsing && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python -m install && \
@@ -159,14 +165,15 @@ RUN source /venv/bin/activate && \
 # Install Kohya_ss
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
+COPY kohys_ss/requirements* ./requirements.txt
 RUN git checkout ${KOHYA_VERSION} && \
     python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.21 \
+    pip3 install --no-cache-dir xformers==0.0.22 \
         bitsandbytes==0.41.1 \
-        tensorboard==2.12.3 \
-        tensorflow==2.12.0 \
+        tensorboard==2.14.1 \
+        tensorflow==2.14.0 \
         wheel \
         tensorrt && \
     pip3 install -r requirements.txt && \
@@ -180,7 +187,7 @@ WORKDIR /ComfyUI
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.21 && \
+    pip3 install --no-cache-dir xformers==0.0.22 && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
