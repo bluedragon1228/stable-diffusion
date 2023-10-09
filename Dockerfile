@@ -117,8 +117,8 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
     git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop.git extensions/sd-webui-roop && \
-    git clone --depth=1 https://github.com/zanllp/sd-webui-infinite-image-browsing.git extensions/sd-webui-infinite-image-browsing && \
-    git clone --depth=1 https://github.com/Uminosachi/inpaint-anything.git extensions/inpaint-anything && \
+    git clone --depth=1 https://github.com/zanllp/sd-webui-infinite-image-browsing.git extensions/infinite-image-browsing && \
+    git clone --depth=1 https://github.com/Uminosachi/sd-webui-inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer
 
 # Install dependencies for Deforum, ControlNet, roop, and After Detailer extensions
@@ -129,9 +129,7 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-roop && \
     pip3 install -r requirements.txt && \
-    cd /stable-diffusion-webui/extensions/inpaint-anything && \
-    pip3 install -r requirements.txt && \
-    cd /stable-diffusion-webui/extensions/sd-webui-infinite-image-browsing && \
+    cd /stable-diffusion-webui/extensions/infinite-image-browsing && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python -m install && \

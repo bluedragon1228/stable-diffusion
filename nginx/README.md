@@ -20,7 +20,7 @@
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
-* [Inpaint Anything extension](https://github.com/Uminosachi/inpaint-anything)
+* [Inpaint Anything extension](https://github.com/Uminosachi/sd-webui-inpaint-anything)
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.0.1
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
