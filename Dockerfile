@@ -135,6 +135,11 @@ RUN source /venv/bin/activate && \
     python -m install && \
     deactivate
 
+# Install dependencies for inpaint anything extension
+RUN source /venv/bin/activate && \
+    pip3 install segment_anything lama_cleaner && \
+    deactivate
+
 # Set Dreambooth extension version
 WORKDIR /stable-diffusion-webui/extensions/sd_dreambooth_extension
 RUN git checkout main && \
