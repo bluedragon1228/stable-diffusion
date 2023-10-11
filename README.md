@@ -22,10 +22,10 @@ Now with SDXL support.
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [Inpaint Anything extension](https://github.com/Uminosachi/sd-webui-inpaint-anything)
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.0.1
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.1.0
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
-* Torch 2.1.0
+* Torch 2.0.1
 * xformers 0.0.22
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
@@ -94,7 +94,7 @@ docker run -d \
   -p 8888:8888 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
-  ashleykza/stable-diffusion-webui:3.2.0
+  ashleykza/stable-diffusion-webui:3.3.0
 ```
 
 You can obviously substitute the image name and tag with your own.
