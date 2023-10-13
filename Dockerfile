@@ -178,6 +178,7 @@ RUN git checkout ${KOHYA_VERSION} && \
         tensorboard==2.14.1 \
         tensorflow==2.14.0 \
         wheel \
+        scipy \
         tensorrt && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
