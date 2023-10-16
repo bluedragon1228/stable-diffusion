@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 4.0.0 with SDXL support and ControlNet SDXL support
+### Version 3.3.1 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -22,6 +22,7 @@
 * [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
 * [Inpaint Anything extension](https://github.com/Uminosachi/sd-webui-inpaint-anything)
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
+* [Civitai extension](https://github.com/civitai/sd_civitai_extension)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.1.0
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
