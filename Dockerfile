@@ -134,7 +134,7 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python -m install && \
-    cd /stable-diffusion-webui/extensions/sd_civitai_extension \
+    cd /stable-diffusion-webui/extensions/sd_civitai_extension && \
     pip3 install -r requirements.txt && \
     deactivate
 
