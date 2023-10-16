@@ -325,5 +325,21 @@
     "s_tmax": 0,
     "sgm_noise_multiplier": false,
     "canvas_auto_expand": true,
-    "controlnet_ignore_noninpaint_mask": false
+    "controlnet_ignore_noninpaint_mask": false,
+    "inpaint_anything_save_folder": "inpaint-anything",
+    "inpaint_anything_sam_oncpu": false,
+    "inpaint_anything_offline_inpainting": false,
+    "inpaint_anything_padding_fill": 127,
+    "control_net_unit_count": 3,
+    "civitai_link_key": "",
+    "civitai_link_logging": true,
+    "civitai_api_key": "",
+    "civitai_download_previews": true,
+    "civitai_download_triggers": true,
+    "civitai_nsfw_previews": false,
+    "civitai_download_missing_models": true,
+    "civitai_hashify_resources": true,
+    "civitai_folder_model": "",
+    "civitai_folder_lora": "",
+    "civitai_folder_lyco": ""
 }
