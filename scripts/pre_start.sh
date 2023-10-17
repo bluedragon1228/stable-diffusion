@@ -38,10 +38,18 @@ echo "Fixing Kohya_ss venv..."
 echo "Fixing ComfyUI venv..."
 /fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
 
-# Link models and VAE
-ln -s /sd-models/sd_xl_base_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors
-ln -s /sd-models/sd_xl_refiner_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors
-ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors
+# Link models and VAE if they are not already linked
+if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors ]]; then
+    ln -s /sd-models/sd_xl_base_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors
+fi
+
+if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors ]]; then
+    ln -s /sd-models/sd_xl_refiner_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors
+fi
+
+if [[ ! -L /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors ]]; then
+    ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors
+fi
 
 # Configure accelerate
 echo "Configuring accelerate..."
@@ -62,56 +70,24 @@ then
     echo ""
     echo "   Stable Diffusion Web UI:"
     echo "   ---------------------------------------------"
-    echo "   cd /workspace/stable-diffusion-webui"
-    echo "   deactivate && source /workspace/venv/bin/activate"
-    echo "   ./webui.sh -f"
+    echo "   /start_a1111.sh"
     echo ""
     echo "   Kohya_ss"
     echo "   ---------------------------------------------"
-    echo "   cd /workspace/kohya_ss"
-    echo "   deactivate"
-    echo "   ./gui.sh --listen 0.0.0.0 --server_port 3011 --headless"
+    echo "   /start_kohya.sh"
     echo ""
     echo "   ComfyUI"
     echo "   ---------------------------------------------"
-    echo "   cd /workspace/ComfyUI"
-    echo "   deactivate"
-    echo "   source venv/bin/activate"
-    echo "   python3 main.py --listen 0.0.0.0 --port 3021"
+    echo "   /start_comfyui.sh"
 else
-    echo "Starting Stable Diffusion Web UI"
-    cd /workspace/stable-diffusion-webui
-    nohup ./webui.sh -f > /workspace/logs/webui.log 2>&1 &
-    echo "Stable Diffusion Web UI started"
-    echo "Log file: /workspace/logs/webui.log"
-
-    echo "Starting Kohya_ss Web UI"
-    cd /workspace/kohya_ss
-    nohup ./gui.sh --listen 0.0.0.0 --server_port 3011 --headless > /workspace/logs/kohya_ss.log 2>&1 &
-    echo "Kohya_ss started"
-    echo "Log file: /workspace/logs/kohya_ss.log"
-
-    echo "Starting ComfyUI"
-    cd /workspace/ComfyUI
-    source venv/bin/activate
-    python3 main.py --listen 0.0.0.0 --port 3021 > /workspace/logs/comfyui.log 2>&1 &
-    echo "ComfyUI started"
-    echo "Log file: /workspace/logs/comfyui.log"
-    deactivate
+    /start_a1111.sh
+    /start_kohya.sh
+    /start_comfyui.sh
 fi
 
 if [ ${ENABLE_TENSORBOARD} ];
 then
-    echo "Starting Tensorboard"
-    cd /workspace
-    mkdir -p /workspace/logs/ti
-    mkdir -p /workspace/logs/dreambooth
-    ln -s /workspace/stable-diffusion-webui/models/dreambooth /workspace/logs/dreambooth
-    ln -s /workspace/stable-diffusion-webui/textual_inversion /workspace/logs/ti
-    source /workspace/venv/bin/activate
-    nohup tensorboard --logdir=/workspace/logs --port=6066 --host=0.0.0.0 > /workspace/logs/tensorboard.log 2>&1 &
-    deactivate
-    echo "Tensorboard Started"
+    /start_tensorboard.sh
 fi
 
 echo "All services have been started"

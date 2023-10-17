@@ -253,7 +253,7 @@ COPY nginx/README.md /usr/share/nginx/html/README.md
 WORKDIR /
 
 # Copy the scripts
-COPY --chmod=755 pre_start.sh start.sh fix_venv.sh download.sh ./
+COPY --chmod=755 scripts/* ./
 
 # Copy the accelerate configuration
 COPY kohya_ss/accelerate.yaml ./
