@@ -201,7 +201,7 @@ RUN python3 -m venv --system-site-packages venv && \
 # Install ComfyUI Custom Nodes
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager && \
     cd custom_nodes/ComfyUI-Manager && \
-    source venv/bin/activate && \
+    source /ComfyUI/venv/bin/activate && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
