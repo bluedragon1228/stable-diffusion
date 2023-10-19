@@ -19,7 +19,7 @@ Now with SDXL support.
   https://github.com/Bing-su/adetailer) v23.10.1
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
-* [roop extension](https://github.com/s0md3v/sd-webui-roop) 0.0.2
+* [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)
 * [Inpaint Anything extension](https://github.com/Uminosachi/sd-webui-inpaint-anything)
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [Civitai extension](https://github.com/civitai/sd_civitai_extension)

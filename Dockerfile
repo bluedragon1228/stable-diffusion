@@ -116,7 +116,7 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
-    git clone --depth=1 https://github.com/ashleykleynhans/sd-webui-roop.git extensions/sd-webui-roop && \
+    git clone --depth=1 https://github.com/Gourieff/sd-webui-reactor.git extensions/sd-webui-reactor && \
     git clone --depth=1 https://github.com/zanllp/sd-webui-infinite-image-browsing.git extensions/infinite-image-browsing && \
     git clone --depth=1 https://github.com/Uminosachi/sd-webui-inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer && \
@@ -128,7 +128,7 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
     pip3 install -r requirements.txt && \
-    cd /stable-diffusion-webui/extensions/sd-webui-roop && \
+    cd /stable-diffusion-webui/extensions/sd-webui-reactor && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/infinite-image-browsing && \
     pip3 install -r requirements.txt && \
@@ -156,10 +156,10 @@ RUN source /venv/bin/activate && \
     pip3 install -r requirements.txt && \
     deactivate
 
-# Add inswapper model for the roop extension
-RUN mkdir -p /workspace/stable-diffusion-webui/models/roop && \
-    cd /workspace/stable-diffusion-webui/models/roop && \
-    wget https://huggingface.co/ashleykleynhans/inswapper/resolve/main/inswapper_128.onnx
+# Add inswapper model for the ReActor extension
+RUN mkdir -p /stable-diffusion-webui/models/insightface && \
+    cd /stable-diffusion-webui/models/insightface && \
+    wget https://github.com/facefusion/facefusion-assets/releases/download/models/inswapper_128.onnx
 
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
@@ -196,11 +196,15 @@ RUN python3 -m venv --system-site-packages venv && \
     pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers==0.0.22 && \
     pip3 install -r requirements.txt && \
-    pip3 cache purge && \
     deactivate
 
 # Install ComfyUI Custom Nodes
-RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager
+RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/ComfyUI-Manager && \
+    cd custom_nodes/ComfyUI-Manager && \
+    source venv/bin/activate && \
+    pip3 install -r requirements.txt && \
+    pip3 cache purge && \
+    deactivate
 
 # Install Application Manager
 WORKDIR /
