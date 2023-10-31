@@ -104,9 +104,7 @@ You can obviously substitute the image name and tag with your own.
 
 1. [RunPod](https://runpod.io?ref=2xxro4sy) for providing most
    of the [container](https://github.com/runpod/containers) code.
-2. Dr. Furkan Gözükara for his amazing
-   [YouTube videos](https://www.youtube.com/@SECourses/videos]).
-3. [Bernard Maltais](https://github.com/bmaltais) (core developer of Kohya_ss)
+2. [Bernard Maltais](https://github.com/bmaltais) (core developer of Kohya_ss)
    for assisting with optimizing the Docker image.
 
 ## Community and Contributing
