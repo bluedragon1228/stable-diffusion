@@ -93,15 +93,15 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
 WORKDIR /stable-diffusion-webui
 RUN python3 -m venv --system-site-packages /venv && \
     source /venv/bin/activate && \
-    pip install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip install --no-cache-dir xformers && \
+    pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
+    pip3 install --no-cache-dir xformers && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
 COPY a1111/requirements.txt a1111/requirements_versions.txt ./
 COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
 RUN source /venv/bin/activate && \
-    python -m install-automatic --skip-torch-cuda-test && \
+    python3 -m install-automatic --skip-torch-cuda-test && \
     deactivate
 
 # Cache the Stable Diffusion Models
@@ -120,9 +120,11 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/zanllp/sd-webui-infinite-image-browsing.git extensions/infinite-image-browsing && \
     git clone --depth=1 https://github.com/Uminosachi/sd-webui-inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer && \
-    git clone --depth=1 https://github.com/civitai/sd_civitai_extension.git extensions/sd_civitai_extension
+    git clone --depth=1 https://github.com/civitai/sd_civitai_extension.git extensions/sd_civitai_extension && \
+    git clone --depth=1 https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus
 
-# Install dependencies for Deforum, ControlNet, roop, and After Detailer extensions
+# Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
+# After Detailer, and CivitAI Browser+ extensions
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
@@ -134,9 +136,11 @@ RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/infinite-image-browsing && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/adetailer && \
-    python -m install && \
+    python3 -m install && \
     cd /stable-diffusion-webui/extensions/sd_civitai_extension && \
     pip3 install -r requirements.txt && \
+    cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
+    python3 -m install && \
     deactivate
 
 # Install dependencies for inpaint anything extension
