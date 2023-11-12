@@ -139,13 +139,17 @@ RUN source /venv/bin/activate && \
     python3 -m install && \
     cd /stable-diffusion-webui/extensions/sd_civitai_extension && \
     pip3 install -r requirements.txt && \
-    cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
-    python3 -m install && \
     deactivate
 
 # Install dependencies for inpaint anything extension
 RUN source /venv/bin/activate && \
     pip3 install segment_anything lama_cleaner && \
+    deactivate
+
+# Install dependencies for Civitai Browser+ extension
+RUN source /venv/bin/activate && \
+    cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
+    pip3 install send2trash ZipUnicode && \
     deactivate
 
 # Set Dreambooth extension version
