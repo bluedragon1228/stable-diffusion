@@ -170,6 +170,9 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
     cd /stable-diffusion-webui/models/insightface && \
     wget https://github.com/facefusion/facefusion-assets/releases/download/models/inswapper_128.onnx
 
+# Configure ReActor to use the GPU instead of the CPU
+RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
+
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
