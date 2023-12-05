@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.6.1 with SDXL support and ControlNet SDXL support
+### Version 3.7.0 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -14,9 +14,9 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.416
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.419
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v23.11.0
+  https://github.com/Bing-su/adetailer) v23.11.1
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)
@@ -24,7 +24,7 @@
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.2.1
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.2.2
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.22
