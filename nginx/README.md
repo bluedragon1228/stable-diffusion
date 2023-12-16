@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.8.0 with SDXL support and ControlNet SDXL support
+### Version 3.9.0 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -8,7 +8,7 @@
 * CUDA 11.8
 * Python 3.10.12
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.6.0
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.7.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [Deforum extension](
