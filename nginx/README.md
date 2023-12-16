@@ -14,7 +14,7 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.422
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.423
 * [After Detailer extension](
   https://github.com/Bing-su/adetailer) v23.11.1
 * [Locon extension](

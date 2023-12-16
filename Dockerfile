@@ -149,7 +149,7 @@ RUN source /venv/bin/activate && \
 # Install dependencies for Civitai Browser+ extension
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
-    pip3 install send2trash ZipUnicode && \
+    pip3 install send2trash ZipUnicode fake-useragent && \
     deactivate
 
 # Set Dreambooth extension version
