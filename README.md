@@ -8,7 +8,7 @@ Now with SDXL support.
 * CUDA 11.8
 * Python 3.10.12
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui.git) 1.7.0
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.7.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [Deforum extension](
@@ -26,13 +26,17 @@ Now with SDXL support.
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.3.0
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-* [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager.git)
+* [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 * Torch 2.0.1
 * xformers 0.0.22
-* sd_xl_base_1.0.safetensors
-* sd_xl_refiner_1.0.safetensors
-* sdxl_vae.safetensors
-* inswapper_128.onnx
+* [sd_xl_base_1.0.safetensors](
+  https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors)
+* [sd_xl_refiner_1.0.safetensors](
+  https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors)
+* [sdxl_vae.safetensors](
+  https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors)
+* [inswapper_128.onnx](
+  https://github.com/facefusion/facefusion-assets/releases/download/models/inswapper_128.onnx)
 * [runpodctl](https://github.com/runpod/runpodctl)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
