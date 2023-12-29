@@ -3,7 +3,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
 ARG WEBUI_VERSION=v1.7.0
 ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
-ARG KOHYA_VERSION=v22.3.1
+ARG KOHYA_VERSION=v22.4.0
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -95,6 +95,7 @@ RUN python3 -m venv --system-site-packages /venv && \
     source /venv/bin/activate && \
     pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
     pip3 install --no-cache-dir xformers && \
+    pip3 install tensorflow[and-cuda] && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
