@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.10.0 with SDXL support and ControlNet SDXL support
+### Version 3.10.1 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
