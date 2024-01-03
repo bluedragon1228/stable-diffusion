@@ -24,7 +24,7 @@
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.4.0
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v22.4.1
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.22
