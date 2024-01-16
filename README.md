@@ -51,12 +51,10 @@ to launch it on RunPod.
 
 ## Building the Docker image
 
-Since the Stable Diffusion models are pretty large, you will need at least
-8GB of system memory (not GPU VRAM) to build this image.
-
-The image **CAN** be built on a `t3a.large` AWS EC2 instance
-which has 2 x vCPU and 8GB of system memory.  It **CANNOT** be built on
-any instances with less memory, eg. `t3a.medium`.
+In order to cache the models, you will need at least 32GB of CPU/system
+memory (not VRAM) due to the large size of the models.  If you have less
+than 32GB of system memory, you can comment out or remove the code in the
+`Dockerfile` that caches the models.
 
 ```bash
 # Clone the repo
