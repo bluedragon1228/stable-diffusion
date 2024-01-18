@@ -10,4 +10,5 @@ OLD_PATH=${1}
 NEW_PATH=${2}
 
 cd ${NEW_PATH}/bin
-sed -i "s|VIRTUAL_ENV=\"${OLD_PATH}\"|VIRTUAL_ENV=\"${NEW_PATH}\"|g" *
+sed -i "s|VIRTUAL_ENV=\"${OLD_PATH}\"|VIRTUAL_ENV=\"${NEW_PATH}\"|" activate
+sed -i 's|#!/venv/bin/python3|#!/workspace/venv/bin/python3|' *
