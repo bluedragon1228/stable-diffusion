@@ -5,27 +5,27 @@ echo "Container is running"
 
 # Sync venv to workspace to support Network volumes
 echo "Syncing venv to workspace, please wait..."
-rsync -au /venv/ /workspace/venv/
+rsync --remove-source-files -rlptDu --ignore-existing /venv/ /workspace/venv/
 rm -rf /venv
 
 # Sync Web UI to workspace to support Network volumes
 echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
-rsync -au /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
+rsync --remove-source-files -rlptDu --ignore-existing /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
 rm -rf /stable-diffusion-webui
 
 # Sync Kohya_ss to workspace to support Network volumes
 echo "Syncing Kohya_ss to workspace, please wait..."
-rsync -au /kohya_ss/ /workspace/kohya_ss/
+rsync --remove-source-files -rlptDu --ignore-existing /kohya_ss/ /workspace/kohya_ss/
 rm -rf /kohya_ss
 
 # Sync ComfyUI to workspace to support Network volumes
 echo "Syncing ComfyUI to workspace, please wait..."
-rsync -au /ComfyUI/ /workspace/ComfyUI/
+rsync --remove-source-files -rlptDu --ignore-existing /ComfyUI/ /workspace/ComfyUI/
 rm -rf /ComfyUI
 
 # Sync Application Manager to workspace to support Network volumes
 echo "Syncing Application Manager to workspace, please wait..."
-rsync -au /app-manager/ /workspace/app-manager/
+rsync --remove-source-files -rlptDu --ignore-existing /app-manager/ /workspace/app-manager/
 rm -rf /app-manager
 
 # Fix the venvs to make them work from /workspace
