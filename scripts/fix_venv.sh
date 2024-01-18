@@ -9,8 +9,5 @@ fi
 OLD_PATH=${1}
 NEW_PATH=${2}
 
-if [ ! -f ${NEW_PATH}/fixed ]; then
-  cd ${NEW_PATH}/bin
-  sed -i "s|${OLD_PATH}|${NEW_PATH}|g" *
-  touch ${NEW_PATH}/fixed
-fi
+cd ${NEW_PATH}/bin
+sed -i "s|VIRTUAL_ENV=\"${OLD_PATH}\"|VIRTUAL_ENV=\"${NEW_PATH}\"|g" *
