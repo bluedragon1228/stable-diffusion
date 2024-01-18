@@ -35,6 +35,8 @@ sync_apps() {
     echo "Syncing Application Manager to workspace, please wait..."
     rsync --remove-source-files -rlptDu /app-manager/ /workspace/app-manager/
     rm -rf /app-manager
+
+    echo "${TEMPLATE_VERSION}" > /workspace/template_version
 }
 
 fix_venvs() {
