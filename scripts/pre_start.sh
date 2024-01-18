@@ -1,63 +1,85 @@
 #!/usr/bin/env bash
+
 export PYTHONUNBUFFERED=1
 
-echo "Container is running"
+echo "Template version: ${TEMPLATE_VERSION}"
 
-# Sync venv to workspace to support Network volumes
-echo "Syncing venv to workspace, please wait..."
-rsync --remove-source-files -rlptDu --ignore-existing /venv/ /workspace/venv/
-rm -rf /venv
-
-# Sync Web UI to workspace to support Network volumes
-echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
-rsync --remove-source-files -rlptDu --ignore-existing /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
-rm -rf /stable-diffusion-webui
-
-# Sync Kohya_ss to workspace to support Network volumes
-echo "Syncing Kohya_ss to workspace, please wait..."
-rsync --remove-source-files -rlptDu --ignore-existing /kohya_ss/ /workspace/kohya_ss/
-rm -rf /kohya_ss
-
-# Sync ComfyUI to workspace to support Network volumes
-echo "Syncing ComfyUI to workspace, please wait..."
-rsync --remove-source-files -rlptDu --ignore-existing /ComfyUI/ /workspace/ComfyUI/
-rm -rf /ComfyUI
-
-# Sync Application Manager to workspace to support Network volumes
-echo "Syncing Application Manager to workspace, please wait..."
-rsync --remove-source-files -rlptDu --ignore-existing /app-manager/ /workspace/app-manager/
-rm -rf /app-manager
-
-# Fix the venvs to make them work from /workspace
-echo "Fixing Stable Diffusion Web UI venv..."
-/fix_venv.sh /venv /workspace/venv
-
-echo "Fixing Kohya_ss venv..."
-/fix_venv.sh /kohya_ss/venv /workspace/kohya_ss/venv
-
-echo "Fixing ComfyUI venv..."
-/fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
-
-# Link models and VAE if they are not already linked
-if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors ]]; then
-    ln -s /sd-models/sd_xl_base_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors
+if [[ -e "/workspace/template_version" ]]; then
+    EXISTING_VERSION=$(cat /workspace/template_version)
+else
+    EXISTING_VERSION="0.0.0"
 fi
 
-if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors ]]; then
-    ln -s /sd-models/sd_xl_refiner_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors
+sync_apps() {
+    # Sync venv to workspace to support Network volumes
+    echo "Syncing venv to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /venv/ /workspace/venv/
+    rm -rf /venv
+
+    # Sync Web UI to workspace to support Network volumes
+    echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
+    rm -rf /stable-diffusion-webui
+
+    # Sync Kohya_ss to workspace to support Network volumes
+    echo "Syncing Kohya_ss to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /kohya_ss/ /workspace/kohya_ss/
+    rm -rf /kohya_ss
+
+    # Sync ComfyUI to workspace to support Network volumes
+    echo "Syncing ComfyUI to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /ComfyUI/ /workspace/ComfyUI/
+    rm -rf /ComfyUI
+
+    # Sync Application Manager to workspace to support Network volumes
+    echo "Syncing Application Manager to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /app-manager/ /workspace/app-manager/
+    rm -rf /app-manager
+}
+
+fix_venvs() {
+    echo "Fixing Stable Diffusion Web UI venv..."
+    /fix_venv.sh /venv /workspace/venv
+
+    echo "Fixing Kohya_ss venv..."
+    /fix_venv.sh /kohya_ss/venv /workspace/kohya_ss/venv
+
+    echo "Fixing ComfyUI venv..."
+    /fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
+}
+
+link_models() {
+   # Link models and VAE if they are not already linked
+   if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors ]]; then
+       ln -s /sd-models/sd_xl_base_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_base_1.0.safetensors
+   fi
+
+   if [[ ! -L /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors ]]; then
+       ln -s /sd-models/sd_xl_refiner_1.0.safetensors /workspace/stable-diffusion-webui/models/Stable-diffusion/sd_xl_refiner_1.0.safetensors
+   fi
+
+   if [[ ! -L /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors ]]; then
+       ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors
+   fi
+}
+
+if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -n 1)" = "$EXISTING_VERSION" ]; then
+    if [ "$EXISTING_VERSION" != "$TEMPLATE_VERSION" ]; then
+        sync_apps
+        fix_venvs
+        link_models
+
+        # Configure accelerate
+        echo "Configuring accelerate..."
+        mkdir -p /root/.cache/huggingface/accelerate
+        mv /accelerate.yaml /root/.cache/huggingface/accelerate/default_config.yaml
+
+        # Create logs directory
+        mkdir -p /workspace/logs
+    else
+        echo "Existing version is the same as the template version, no syncing required."
+    fi
 fi
-
-if [[ ! -L /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors ]]; then
-    ln -s /sd-models/sdxl_vae.safetensors /workspace/stable-diffusion-webui/models/VAE/sdxl_vae.safetensors
-fi
-
-# Configure accelerate
-echo "Configuring accelerate..."
-mkdir -p /root/.cache/huggingface/accelerate
-mv /accelerate.yaml /root/.cache/huggingface/accelerate/default_config.yaml
-
-# Create logs directory
-mkdir -p /workspace/logs
 
 # Start application manager
 cd /workspace/app-manager
