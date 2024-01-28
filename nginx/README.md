@@ -14,9 +14,9 @@
 * [Deforum extension](
   https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.431
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.439
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v24.1.1
+  https://github.com/Bing-su/adetailer) v24.1.2
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)
