@@ -101,7 +101,7 @@ configure_filezilla() {
           echo "PermitRootLogin yes" >> ${ssh_config}
 
         # Restart the SSH service
-        service ssh restart || systemctl restart sshd
+        service ssh restart
 
         # Create FileZilla XML configuration for SFTP
         filezilla_config_file="/workspace/filezilla_sftp_config.xml"
