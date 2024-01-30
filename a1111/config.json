@@ -180,7 +180,9 @@
     "keyedit_delimiters": ".,\\/!?%^*;:{}=`~()",
     "keyedit_move": true,
     "quicksettings_list": [
-        "sd_model_checkpoint"
+        "sd_model_checkpoint",
+        "sd_vae",
+        "CLIP_stop_at_last_layers"
     ],
     "ui_tab_order": [],
     "hidden_tabs": [],
@@ -379,5 +381,8 @@
     "img2img_settings_accordion": false,
     "enable_console_prompts": false,
     "dump_stacks_on_signal": false,
-    "postprocessing_existing_caption_action": "Ignore"
+    "postprocessing_existing_caption_action": "Ignore",
+    "controlnet_disable_photopea_edit": false,
+    "controlnet_photopea_warning": true,
+    "controlnet_clip_detector_on_cpu": false
 }
