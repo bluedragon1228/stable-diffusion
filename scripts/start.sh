@@ -56,7 +56,7 @@ export_env_vars() {
 start_jupyter() {
     if [[ $JUPYTER_PASSWORD ]]; then
         echo "Starting Jupyter Lab..."
-        mkdir -p /workspace && \
+        mkdir -p /workspace/logs && \
         cd / && \
         nohup jupyter lab --allow-root \
           --no-browser \
