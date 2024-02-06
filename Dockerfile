@@ -52,6 +52,8 @@ RUN apt update && \
         unzip \
         p7zip-full \
         htop \
+        screen \
+        tmux \
         pkg-config \
         plocate \
         libcairo2-dev \
@@ -281,6 +283,6 @@ COPY --chmod=755 scripts/* ./
 COPY kohya_ss/accelerate.yaml ./
 
 # Start the container
-ENV TEMPLATE_VERSION=3.12.1
+ENV TEMPLATE_VERSION=3.12.2
 SHELL ["/bin/bash", "--login", "-c"]
 ENTRYPOINT [ "/start.sh" ]

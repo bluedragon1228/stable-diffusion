@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -e  # Exit the script if any statement returns a non-true return value
-
 # ---------------------------------------------------------------------------- #
 #                          Function Definitions                                #
 # ---------------------------------------------------------------------------- #
@@ -140,10 +138,10 @@ EOF
 
 echo "Container Started, configuration in progress..."
 start_nginx
-execute_script "/pre_start.sh" "Running pre-start script..."
 setup_ssh
-configure_filezilla
 start_jupyter
+execute_script "/pre_start.sh" "Running pre-start script..."
+configure_filezilla
 export_env_vars
 execute_script "/post_start.sh" "Running post-start script..."
 echo "Container is READY!"
