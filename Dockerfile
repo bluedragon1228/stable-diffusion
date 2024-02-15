@@ -181,7 +181,7 @@ RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_devic
 # Fix Tensorboard
 RUN source /venv/bin/activate && \
     pip3 uninstall -y tensorboard tb-nightly && \
-    pip3 install tensorboard tensorflow && \
+    pip3 install tensorboard==2.15.2 tensorflow && \
     pip3 cache purge && \
     deactivate
 
