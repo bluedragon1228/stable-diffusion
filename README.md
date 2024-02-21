@@ -29,6 +29,7 @@ Now with SDXL support.
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 * Torch 2.0.1
 * xformers 0.0.22
+* Jupyter Lab
 * [sd_xl_base_1.0.safetensors](
   https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors)
 * [sd_xl_refiner_1.0.safetensors](
@@ -38,6 +39,8 @@ Now with SDXL support.
 * [inswapper_128.onnx](
   https://github.com/facefusion/facefusion-assets/releases/download/models/inswapper_128.onnx)
 * [runpodctl](https://github.com/runpod/runpodctl)
+* [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
+* [RunPod File Uploader](https://github.com/kodxana/RunPod-FilleUploader)
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
@@ -95,13 +98,47 @@ docker run -d \
   -p 3010:3011 \
   -p 3020:3021 \
   -p 6006:6066 \
+  -p 8000:8000 \
   -p 8888:8888 \
+  -p 2999:2999 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
   ashleykza/stable-diffusion-webui:latest
 ```
 
 You can obviously substitute the image name and tag with your own.
+
+### Ports
+
+| Connect Port | Internal Port | Description                   |
+|--------------|---------------|-------------------------------|
+| 3000         | 3001          | A1111 Stable Diffusion Web UI |
+| 3010         | 3011          | Kohya_ss                      |
+| 3020         | 3021          | ComfyUI                       |
+| 6006         | 6066          | Tensorboard                   |
+| 8000         | 8000          | Application Manager           |
+| 8888         | 8888          | Jupyter Lab                   |
+| 2999         | 2999          | RunPod File Uploader          |
+
+### Environment Variables
+
+| Variable           | Description                                  | Default  |
+|--------------------|----------------------------------------------|----------|
+| JUPYTER_PASSWORD   | Password for Jupyter Lab                     | Jup1t3R! |
+| DISABLE_AUTOLAUNCH | Disable Web UIs from launching automatically | enabled  |
+| ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | enabled  |
+
+## Logs
+
+Stable Diffusion Web UI and Kohya SS both create log
+files, and you can tail the log files instead of
+killing the services to view the logs
+
+| Application             | Log file                     |
+|-------------------------|------------------------------|
+| Stable Diffusion Web UI | /workspace/logs/webui.log    |
+| Kohya SS                | /workspace/logs/kohya_ss.log |
+| ComfyUI                 | /workspace/logs/comfyui.log  |
 
 ## Acknowledgements
 

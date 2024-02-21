@@ -229,13 +229,18 @@ RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager &&
     cd /app-manager && \
     npm install
 
-# Install Jupyter
-WORKDIR /
+# Install Jupyter, gdown and OhMyRunPod
 RUN pip3 install -U --no-cache-dir jupyterlab \
         jupyterlab_widgets \
         ipykernel \
         ipywidgets \
-        gdown
+        gdown \
+        OhMyRunPod
+
+# Install RunPod File Uploader
+RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/installer.sh -o installer.sh && \
+    chmod +x installer.sh && \
+    ./installer.sh
 
 # Install rclone
 RUN curl https://rclone.org/install.sh | bash
@@ -274,15 +279,16 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 COPY nginx/README.md /usr/share/nginx/html/README.md
 
-WORKDIR /
+# Set template version
+ENV TEMPLATE_VERSION=3.12.4
 
 # Copy the scripts
+WORKDIR /
 COPY --chmod=755 scripts/* ./
 
 # Copy the accelerate configuration
 COPY kohya_ss/accelerate.yaml ./
 
 # Start the container
-ENV TEMPLATE_VERSION=3.12.3
 SHELL ["/bin/bash", "--login", "-c"]
 CMD [ "/start.sh" ]

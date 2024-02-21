@@ -1,6 +1,6 @@
 ## Automatic1111 Stable Diffusion WebUI, Kohya SS and ComfyUI
 
-### Version 3.12.3 with SDXL support and ControlNet SDXL support
+### Version 3.12.4 with SDXL support and ControlNet SDXL support
 
 ### Included in this Template
 
@@ -28,11 +28,14 @@
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * Torch 2.0.1
 * xformers 0.0.22
+* Jupyter Lab
 * sd_xl_base_1.0.safetensors
 * sd_xl_refiner_1.0.safetensors
 * sdxl_vae.safetensors
 * inswapper_128.onnx
 * [runpodctl](https://github.com/runpod/runpodctl)
+* [OhMyRunPod](https://github.com/kodxana/OhMyRunPod)
+* [RunPod File Uploader](https://github.com/kodxana/RunPod-FilleUploader)
 * [croc](https://github.com/schollz/croc)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
 
@@ -52,6 +55,7 @@ say **Container is READY!**.
 | 6006         | 6066          | Tensorboard                   |
 | 8000         | 8000          | Application Manager           |
 | 8888         | 8888          | Jupyter Lab                   |
+| 2999         | 2999          | RunPod File Uploader          |
 
 You can use the Application Manager to stop and start
 the applications.  This can be useful for stopping the
