@@ -81,6 +81,8 @@ if [ "$(printf '%s\n' "$EXISTING_VERSION" "$TEMPLATE_VERSION" | sort -V | head -
     else
         echo "Existing version is the same as the template version, no syncing required."
     fi
+else
+    echo "Existing version is newer than the template version, not syncing!"
 fi
 
 # Start application manager

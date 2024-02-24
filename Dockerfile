@@ -5,7 +5,7 @@ ARG TORCH_VERSION=2.0.1
 ARG XFORMERS_VERSION=0.0.22
 ARG WEBUI_VERSION=v1.7.0
 ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
-ARG KOHYA_VERSION=v22.6.1
+ARG KOHYA_VERSION=v22.6.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -280,7 +280,7 @@ COPY nginx/502.html /usr/share/nginx/html/502.html
 COPY nginx/README.md /usr/share/nginx/html/README.md
 
 # Set template version
-ENV TEMPLATE_VERSION=3.12.4
+ENV TEMPLATE_VERSION=3.12.5
 
 # Copy the scripts
 WORKDIR /
