@@ -278,7 +278,6 @@ RUN rm -f /etc/ssh/ssh_host_*
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
-COPY nginx/README.md /usr/share/nginx/html/README.md
 
 # Set template version
 ENV TEMPLATE_VERSION=4.0.0
