@@ -5,12 +5,11 @@ accelerate
 blendmodes
 clean-fid
 einops
-fastapi>=0.94.0
-ftfy
+facexlib
+fastapi>=0.90.1
 gradio==3.41.2
 inflection
 jsonmerge
-huggingface_hub
 kornia
 lark
 numpy
@@ -18,10 +17,8 @@ omegaconf
 open-clip-torch
 
 piexif
-protobuf
 psutil
 pytorch_lightning
-regex
 requests
 resize-right
 
