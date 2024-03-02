@@ -107,6 +107,7 @@ RUN python3 -m venv --system-site-packages /venv && \
 COPY a1111/requirements.txt a1111/requirements_versions.txt ./
 COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
 RUN source /venv/bin/activate && \
+    pip3 install -r requirements_versions.txt && \
     python3 -m install-automatic --skip-torch-cuda-test && \
     deactivate
 
