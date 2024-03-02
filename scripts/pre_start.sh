@@ -1,24 +1,28 @@
 #!/usr/bin/env bash
 
 export PYTHONUNBUFFERED=1
+export APP="stable-diffusion-webui"
+DOCKER_IMAGE_VERSION_FILE="/workspace/${APP}/docker_image_version"
 
 echo "Template version: ${TEMPLATE_VERSION}"
+echo "venv: ${VENV_PATH}"
 
-if [[ -e "/workspace/template_version" ]]; then
-    EXISTING_VERSION=$(cat /workspace/template_version)
+if [[ -e ${DOCKER_IMAGE_VERSION_FILE} ]]; then
+    EXISTING_VERSION=$(cat ${DOCKER_IMAGE_VERSION_FILE})
 else
     EXISTING_VERSION="0.0.0"
 fi
 
 sync_apps() {
-    # Sync venv to workspace to support Network volumes
-    echo "Syncing venv to workspace, please wait..."
-    rsync --remove-source-files -rlptDu /venv/ /workspace/venv/
+    # Sync main venv to workspace to support Network volumes
+    echo "Syncing main venv to workspace, please wait..."
+    mkdir -p ${VENV_PATH}
+    rsync --remove-source-files -rlptDu /venv/ ${VENV_PATH}/
     rm -rf /venv
 
-    # Sync Web UI to workspace to support Network volumes
-    echo "Syncing Stable Diffusion Web UI to workspace, please wait..."
-    rsync --remove-source-files -rlptDu /stable-diffusion-webui/ /workspace/stable-diffusion-webui/
+    # Sync application to workspace to support Network volumes
+    echo "Syncing ${APP} to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /${APP}/ /workspace/${APP}/
     rm -rf /stable-diffusion-webui
 
     # Sync Kohya_ss to workspace to support Network volumes
@@ -36,12 +40,13 @@ sync_apps() {
     rsync --remove-source-files -rlptDu /app-manager/ /workspace/app-manager/
     rm -rf /app-manager
 
-    echo "${TEMPLATE_VERSION}" > /workspace/template_version
+    echo "${TEMPLATE_VERSION}" > ${DOCKER_IMAGE_VERSION_FILE}
+    echo "${VENV_PATH}" > "/workspace/${APP}/venv_path"
 }
 
 fix_venvs() {
     echo "Fixing Stable Diffusion Web UI venv..."
-    /fix_venv.sh /venv /workspace/venv
+    /fix_venv.sh /venv ${VENV_PATH}
 
     echo "Fixing Kohya_ss venv..."
     /fix_venv.sh /kohya_ss/venv /workspace/kohya_ss/venv
