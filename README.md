@@ -11,12 +11,10 @@ Now with SDXL support.
   https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.7.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
-* [Deforum extension](
-  https://github.com/deforum-art/sd-webui-deforum)
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.440
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.441
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v24.1.2
+  https://github.com/Bing-su/adetailer) v24.3.0
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)
@@ -122,15 +120,15 @@ You can obviously substitute the image name and tag with your own.
 
 ### Environment Variables
 
-| Variable           | Description                                  | Default  |
-|--------------------|----------------------------------------------|----------|
-| JUPYTER_PASSWORD   | Password for Jupyter Lab                     | Jup1t3R! |
-| DISABLE_AUTOLAUNCH | Disable Web UIs from launching automatically | enabled  |
-| ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | enabled  |
+| Variable           | Description                                  | Default                                 |
+|--------------------|----------------------------------------------|-----------------------------------------|
+| VENV_PATH          | Set the path for the Python venv for the app | /workspace/venvs/stable-diffusion-webui |
+| DISABLE_AUTOLAUNCH | Disable Web UIs from launching automatically | enabled                                 |
+| ENABLE_TENSORBOARD | Enables Tensorboard on port 6006             | enabled                                 |
 
 ## Logs
 
-Stable Diffusion Web UI and Kohya SS both create log
+Stable Diffusion Web UI, Kohya SS, and ComfyUI each create log
 files, and you can tail the log files instead of
 killing the services to view the logs
 
@@ -139,13 +137,6 @@ killing the services to view the logs
 | Stable Diffusion Web UI | /workspace/logs/webui.log    |
 | Kohya SS                | /workspace/logs/kohya_ss.log |
 | ComfyUI                 | /workspace/logs/comfyui.log  |
-
-## Acknowledgements
-
-1. [RunPod](https://runpod.io?ref=2xxro4sy) for providing most
-   of the [container](https://github.com/runpod/containers) code.
-2. [Bernard Maltais](https://github.com/bmaltais) (core developer of Kohya_ss)
-   for assisting with optimizing the Docker image.
 
 ## Community and Contributing
 

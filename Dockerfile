@@ -55,6 +55,7 @@ RUN apt update && \
         htop \
         screen \
         tmux \
+        bc \
         pkg-config \
         plocate \
         libcairo2-dev \
@@ -118,8 +119,9 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Clone the Automatic1111 Extensions
+# Deforum not currently working with A1111 v1.8.0
+#     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
-    git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
     git clone --depth=1 https://github.com/Gourieff/sd-webui-reactor.git extensions/sd-webui-reactor && \
@@ -131,9 +133,10 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
 
 # Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
 # After Detailer, and CivitAI Browser+ extensions
+# Deforum not currently working with A1111 v1.8.0
+#    cd /stable-diffusion-webui/extensions/deforum && \
+#    pip3 install -r requirements.txt && \
 RUN source /venv/bin/activate && \
-    cd /stable-diffusion-webui/extensions/deforum && \
-    pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-reactor && \
@@ -168,6 +171,7 @@ WORKDIR /stable-diffusion-webui
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
+    pip3 cache purge && \
     deactivate
 
 # Add inswapper model for the ReActor extension
@@ -179,11 +183,9 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
 RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
 
 # Fix Tensorboard
-RUN source /venv/bin/activate && \
-    pip3 uninstall -y tensorboard tb-nightly && \
+RUN pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard==2.15.2 tensorflow && \
-    pip3 cache purge && \
-    deactivate
+    pip3 cache purge
 
 # Install Kohya_ss
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
