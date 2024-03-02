@@ -5,7 +5,7 @@ ARG TORCH_VERSION=2.1.2
 ARG INDEX_URL="https://download.pytorch.org/whl/cu121"
 ARG XFORMERS_VERSION=0.0.23.post1
 ARG WEBUI_VERSION=v1.8.0
-ARG DREAMBOOTH_COMMIT=cf086c536b141fc522ff11f6cffc8b7b12da04b9
+ARG DREAMBOOTH_COMMIT=30bfbc289a1d90153a3e5a5ab92bf5636e66b210
 ARG KOHYA_VERSION=v22.6.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -104,7 +104,6 @@ RUN python3 -m venv --system-site-packages /venv && \
     deactivate
 
 # Install the dependencies for the Automatic1111 Stable Diffusion Web UI
-COPY a1111/requirements.txt a1111/requirements_versions.txt ./
 COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
 RUN source /venv/bin/activate && \
     pip3 install -r requirements_versions.txt && \
@@ -166,7 +165,6 @@ RUN git checkout main && \
 
 # Install the dependencies for the Dreambooth extension
 WORKDIR /stable-diffusion-webui
-COPY a1111/requirements_dreambooth.txt ./requirements.txt
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd_dreambooth_extension && \
     pip3 install -r requirements.txt && \
