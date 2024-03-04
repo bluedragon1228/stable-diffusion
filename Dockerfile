@@ -1,9 +1,9 @@
 # Stage 1: Base
-FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04 as base
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG TORCH_VERSION=2.1.2
-ARG INDEX_URL="https://download.pytorch.org/whl/cu121"
-ARG XFORMERS_VERSION=0.0.23.post1
+ARG TORCH_VERSION=2.0.1
+ARG INDEX_URL="https://download.pytorch.org/whl/cu118"
+ARG XFORMERS_VERSION=0.0.22
 ARG WEBUI_VERSION=v1.8.0
 ARG DREAMBOOTH_COMMIT=30bfbc289a1d90153a3e5a5ab92bf5636e66b210
 ARG KOHYA_VERSION=v22.6.2
@@ -192,10 +192,10 @@ RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss
 WORKDIR /kohya_ss
 COPY kohya_ss/requirements* ./
 RUN git checkout ${KOHYA_VERSION} && \
-    python3 -m venv venv && \
+    python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
-    pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 && \
-    pip3 install --no-cache-dir xformers==0.0.22 \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} \
         bitsandbytes==0.41.1 \
         tensorboard==2.14.1 \
         tensorflow==2.14.0 \
