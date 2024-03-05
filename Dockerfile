@@ -119,9 +119,8 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Clone the Automatic1111 Extensions
-# Deforum not currently working with A1111 v1.8.0
-#     git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
 RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension && \
+    git clone --depth=1 https://github.com/deforum-art/sd-webui-deforum.git extensions/deforum && \
     git clone --depth=1 https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet && \
     git clone --depth=1 https://github.com/ashleykleynhans/a1111-sd-webui-locon.git extensions/a1111-sd-webui-locon && \
     git clone --depth=1 https://github.com/Gourieff/sd-webui-reactor.git extensions/sd-webui-reactor && \
@@ -133,11 +132,11 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
 
 # Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
 # After Detailer, and CivitAI Browser+ extensions
-# Deforum not currently working with A1111 v1.8.0
-#    cd /stable-diffusion-webui/extensions/deforum && \
-#    pip3 install -r requirements.txt && \
 RUN source /venv/bin/activate && \
+    pip3 install basicsr && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
+    pip3 install -r requirements.txt && \
+    cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/sd-webui-reactor && \
     pip3 install -r requirements.txt && \
@@ -248,7 +247,8 @@ RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/i
 RUN curl https://rclone.org/install.sh | bash
 
 # Install runpodctl
-RUN wget https://github.com/runpod/runpodctl/releases/download/v1.13.0/runpodctl-linux-amd64 -O runpodctl && \
+ARG RUNPODCTL_VERSION="v1.14.2"
+RUN wget "https://github.com/runpod/runpodctl/releases/download/${RUNPODCTL_VERSION}/runpodctl-linux-amd64" -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
 
@@ -281,7 +281,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=4.0.0
+ENV TEMPLATE_VERSION=4.0.1
 
 # Set the main venv path
 ENV VENV_PATH="/workspace/venvs/stable-diffusion-webui"

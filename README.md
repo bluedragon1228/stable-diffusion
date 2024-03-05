@@ -21,6 +21,7 @@ Now with SDXL support.
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)
+* [Deforum extension](https://github.com/deforum-art/sd-webui-deforum)
 * [Inpaint Anything extension](https://github.com/Uminosachi/sd-webui-inpaint-anything)
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
