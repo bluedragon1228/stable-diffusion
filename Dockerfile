@@ -199,6 +199,11 @@ RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
     pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+    pip3 install --no-cache-dir bitsandbytes==0.41.2 \
+        tensorboard==2.15.2 \
+        tensorflow==2.15.0.post1 \
+        wheel \
+        tensorrt && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
     pip3 cache purge && \
