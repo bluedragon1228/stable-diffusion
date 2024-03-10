@@ -191,7 +191,7 @@ RUN pip3 uninstall -y tensorboard tb-nightly && \
 # Install Kohya_ss
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     cd /kohya_ss && \
-    git checkout ${KOHYA_VERSION} \
+    git checkout ${KOHYA_VERSION}
 
 WORKDIR /kohya_ss
 COPY kohya_ss/requirements* ./
