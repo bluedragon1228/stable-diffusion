@@ -198,12 +198,21 @@ COPY kohya_ss/requirements* ./
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} && \
+    deactivate
+
+# Although these requirements are in runpod_requirements.txt, we get an error
+# if we try to install the runpod_requirements.txt file due to torch and xformers versions
+RUN source venv/bin/activate && \
     pip3 install --no-cache-dir bitsandbytes==0.41.2 \
         tensorboard==2.15.2 \
         tensorflow==2.15.0.post1 \
         wheel \
         tensorrt && \
+    deactivate
+
+# Install additional Kohya_ss requirements and library
+RUN source venv/bin/activate && \
     pip3 install -r requirements.txt && \
     pip3 install . && \
     pip3 cache purge && \
