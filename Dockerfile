@@ -198,7 +198,7 @@ COPY kohya_ss/requirements* ./
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+    pip3 install --no-cache-dir xformers==0.0.22+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
     pip3 install --no-cache-dir bitsandbytes==0.41.1 \
         tensorboard==2.14.1 \
         tensorflow==2.14.0 \
