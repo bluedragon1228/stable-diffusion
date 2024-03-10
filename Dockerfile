@@ -199,7 +199,7 @@ RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
     pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
-    pip3 install -r requirements_runpod.txt && \
+    pip3 install -r requirements.txt && \
     pip3 install . && \
     pip3 cache purge && \
     deactivate
