@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export PYTHONUNBUFFERED=1
 echo "Starting Tensorboard"
 cd /workspace
 mkdir -p /workspace/logs/ti

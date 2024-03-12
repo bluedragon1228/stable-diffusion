@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export PYTHONUNBUFFERED=1
 echo "Starting ComfyUI"
 cd /workspace/ComfyUI
 source venv/bin/activate

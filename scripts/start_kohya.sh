@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+export PYTHONUNBUFFERED=1
 echo "Starting Kohya_ss Web UI"
 cd /workspace/kohya_ss
 export HF_HOME="/workspace"

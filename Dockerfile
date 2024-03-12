@@ -7,7 +7,7 @@ ARG TORCH_VERSION=2.1.2
 ARG XFORMERS_VERSION=0.0.23.post1
 ARG WEBUI_VERSION=v1.8.0
 ARG DREAMBOOTH_COMMIT=30bfbc289a1d90153a3e5a5ab92bf5636e66b210
-ARG KOHYA_VERSION=v22.6.2
+ARG KOHYA_VERSION=v23.0.5
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -183,38 +183,19 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
 # Configure ReActor to use the GPU instead of the CPU
 RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
 
-# Fix Tensorboard
-RUN pip3 uninstall -y tensorboard tb-nightly && \
-    pip3 install tensorboard==2.15.2 tensorflow && \
-    pip3 cache purge
-
 # Install Kohya_ss
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     cd /kohya_ss && \
-    git checkout ${KOHYA_VERSION}
-
-WORKDIR /kohya_ss
-COPY kohya_ss/requirements* ./
-RUN python3 -m venv --system-site-packages venv && \
+    git checkout ${KOHYA_VERSION} && \
+    git submodule update --init --recursive && \
+    python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
     pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} && \
-    deactivate
-
-# Although these requirements are in runpod_requirements.txt, we get an error
-# if we try to install the runpod_requirements.txt file due to torch and xformers versions
-RUN source venv/bin/activate && \
-    pip3 install --no-cache-dir bitsandbytes==0.41.2 \
-        tensorboard==2.15.2 \
-        tensorflow==2.15.0.post1 \
-        wheel \
-        tensorrt && \
-    deactivate
-
-# Install additional Kohya_ss requirements and library
-RUN source venv/bin/activate && \
+    pip3 install bitsandbytes==0.43.0 \
+        tensorboard==2.15.2 tensorflow==2.15.0.post1 \
+        wheel packaging tensorrt && \
     pip3 install -r requirements.txt && \
-    pip3 install . && \
     pip3 cache purge && \
     deactivate
 
@@ -242,13 +223,17 @@ RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager &&
     cd /app-manager && \
     npm install
 
-# Install Jupyter, gdown and OhMyRunPod
-RUN pip3 install -U --no-cache-dir jupyterlab \
+# Install Jupyter, Tensorboad, gdown and OhMyRunPod
+RUN pip3 uninstall -y tensorboard tb-nightly && \
+    pip3 install -U --no-cache-dir jupyterlab \
         jupyterlab_widgets \
         ipykernel \
         ipywidgets \
+        tensorboard==2.15.2 tensorflow==2.15.0.post1 \
         gdown \
-        OhMyRunPod
+        OhMyRunPod && \
+    pip3 cache purge
+
 
 # Install RunPod File Uploader
 RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/installer.sh -o installer.sh && \
@@ -293,7 +278,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=4.1.0
+ENV TEMPLATE_VERSION=4.2.0
 
 # Set the main venv path
 ENV VENV_PATH="/workspace/venvs/stable-diffusion-webui"
