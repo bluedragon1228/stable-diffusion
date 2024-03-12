@@ -76,7 +76,7 @@ wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/
 wget https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
 
 # Build and tag the image
-docker docker buildx bake -f docker-bake.hcl
+docker buildx bake -f docker-bake.hcl
 
 # Log in to Docker Hub
 docker login
