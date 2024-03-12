@@ -244,7 +244,7 @@ RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/i
 RUN curl https://rclone.org/install.sh | bash
 
 # Install runpodctl
-ARG RUNPODCTL_VERSION="v1.14.2"
+ARG RUNPODCTL_VERSION
 RUN wget "https://github.com/runpod/runpodctl/releases/download/${RUNPODCTL_VERSION}/runpodctl-linux-amd64" -O runpodctl && \
     chmod a+x runpodctl && \
     mv runpodctl /usr/local/bin
