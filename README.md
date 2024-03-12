@@ -76,14 +76,11 @@ wget https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/mai
 wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors
 wget https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
 
-# Build and tag the image
-docker buildx bake -f docker-bake.hcl
-
 # Log in to Docker Hub
 docker login
 
-# Push the image to Docker Hub
-docker push username/image-name:1.0.0
+# Build the image, tag the image, and push the image to Docker Hub
+docker buildx bake -f docker-bake.hcl --push
 ```
 
 ## Running Locally
