@@ -195,6 +195,7 @@ RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     pip3 install bitsandbytes==0.43.0 \
         tensorboard==2.15.2 tensorflow==2.15.0.post1 \
         wheel packaging tensorrt && \
+    pip3 install tensorflow[and-cuda] && \
     pip3 install -r requirements.txt && \
     pip3 cache purge && \
     deactivate
