@@ -1,13 +1,15 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG CU_VERSION=118
-ARG INDEX_URL="https://download.pytorch.org/whl/cu${CU_VERSION}"
-ARG TORCH_VERSION=2.1.2
-ARG XFORMERS_VERSION=0.0.23.post1
-ARG WEBUI_VERSION=v1.8.0
-ARG DREAMBOOTH_COMMIT=30bfbc289a1d90153a3e5a5ab92bf5636e66b210
-ARG KOHYA_VERSION=v23.0.6
+ARG RELEASE
+ARG CU_VERSION
+ARG INDEX_URL
+ARG TORCH_VERSION
+ARG XFORMERS_VERSION
+ARG WEBUI_VERSION
+ARG DREAMBOOTH_COMMIT
+ARG KOHYA_VERSION
+ARG VENV_PATH
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -279,10 +281,10 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=4.2.1
+ENV TEMPLATE_VERSION=${RELEASE}
 
 # Set the main venv path
-ENV VENV_PATH="/workspace/venvs/stable-diffusion-webui"
+ENV VENV_PATH=${VENV_PATH}
 
 # Copy the scripts
 WORKDIR /
