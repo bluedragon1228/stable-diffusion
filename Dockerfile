@@ -279,7 +279,7 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=4.2.0
+ENV TEMPLATE_VERSION=4.2.1
 
 # Set the main venv path
 ENV VENV_PATH="/workspace/venvs/stable-diffusion-webui"
