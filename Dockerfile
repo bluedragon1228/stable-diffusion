@@ -1,15 +1,9 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG RELEASE
-ARG CU_VERSION
 ARG INDEX_URL
 ARG TORCH_VERSION
 ARG XFORMERS_VERSION
-ARG WEBUI_VERSION
-ARG DREAMBOOTH_COMMIT
-ARG KOHYA_VERSION
-ARG VENV_PATH
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -95,6 +89,7 @@ COPY sdxl_vae.safetensors /sd-models/sdxl_vae.safetensors
 
 # Clone the git repo of the Stable Diffusion Web UI by Automatic1111
 # and set version
+ARG WEBUI_VERSION
 WORKDIR /
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
@@ -165,6 +160,7 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Set Dreambooth extension version
+ARG DREAMBOOTH_COMMIT
 WORKDIR /stable-diffusion-webui/extensions/sd_dreambooth_extension
 RUN git checkout main && \
     git reset ${DREAMBOOTH_COMMIT} --hard
@@ -186,6 +182,7 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
 RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
 
 # Install Kohya_ss
+ARG KOHYA_VERSION
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     cd /kohya_ss && \
     git checkout ${KOHYA_VERSION} && \
@@ -281,9 +278,11 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
+ARG RELEASE
 ENV TEMPLATE_VERSION=${RELEASE}
 
 # Set the main venv path
+ARG VENV_PATH
 ENV VENV_PATH=${VENV_PATH}
 
 # Copy the scripts
