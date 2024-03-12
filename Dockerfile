@@ -1,13 +1,9 @@
 # Stage 1: Base
 FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
 
-ARG CU_VERSION=118
-ARG INDEX_URL="https://download.pytorch.org/whl/cu${CU_VERSION}"
-ARG TORCH_VERSION=2.1.2
-ARG XFORMERS_VERSION=0.0.23.post1
-ARG WEBUI_VERSION=v1.8.0
-ARG DREAMBOOTH_COMMIT=30bfbc289a1d90153a3e5a5ab92bf5636e66b210
-ARG KOHYA_VERSION=v23.0.6
+ARG INDEX_URL
+ARG TORCH_VERSION
+ARG XFORMERS_VERSION
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -73,8 +69,8 @@ RUN apt update && \
 RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Install Torch, xformers and tensorrt
-RUN pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+RUN pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} &&  \
     pip3 install --no-cache-dir tensorrt
 
 # Stage 2: Install applications
@@ -93,6 +89,7 @@ COPY sdxl_vae.safetensors /sd-models/sdxl_vae.safetensors
 
 # Clone the git repo of the Stable Diffusion Web UI by Automatic1111
 # and set version
+ARG WEBUI_VERSION
 WORKDIR /
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
@@ -101,8 +98,8 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
 WORKDIR /stable-diffusion-webui
 RUN python3 -m venv --system-site-packages /venv && \
     source /venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} &&  \
     pip3 install tensorflow[and-cuda] && \
     deactivate
 
@@ -163,6 +160,7 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Set Dreambooth extension version
+ARG DREAMBOOTH_COMMIT
 WORKDIR /stable-diffusion-webui/extensions/sd_dreambooth_extension
 RUN git checkout main && \
     git reset ${DREAMBOOTH_COMMIT} --hard
@@ -184,14 +182,15 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
 RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
 
 # Install Kohya_ss
+ARG KOHYA_VERSION
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     cd /kohya_ss && \
     git checkout ${KOHYA_VERSION} && \
     git submodule update --init --recursive && \
     python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
     pip3 install bitsandbytes==0.43.0 \
         tensorboard==2.15.2 tensorflow==2.15.0.post1 \
         wheel packaging tensorrt && \
@@ -205,8 +204,8 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
 WORKDIR /ComfyUI
 RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION}+cu${CU_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION}+cu${CU_VERSION} --index-url ${INDEX_URL} &&  \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} &&  \
     pip3 install -r requirements.txt && \
     deactivate
 
@@ -279,10 +278,12 @@ COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
-ENV TEMPLATE_VERSION=4.2.1
+ARG RELEASE
+ENV TEMPLATE_VERSION=${RELEASE}
 
 # Set the main venv path
-ENV VENV_PATH="/workspace/venvs/stable-diffusion-webui"
+ARG VENV_PATH
+ENV VENV_PATH=${VENV_PATH}
 
 # Copy the scripts
 WORKDIR /
