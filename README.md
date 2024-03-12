@@ -53,6 +53,11 @@ to launch it on RunPod.
 
 ## Building the Docker image
 
+> [!NOTE]
+> You will need to edit the `docker-bake.hcl` file and update `RELEASE`,
+> and `tags`.  You can obviously edit the other values too, but these
+> are the most important ones.
+
 In order to cache the models, you will need at least 32GB of CPU/system
 memory (not VRAM) due to the large size of the models.  If you have less
 than 32GB of system memory, you can comment out or remove the code in the
@@ -71,7 +76,7 @@ wget https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/
 wget https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
 
 # Build and tag the image
-docker build -t username/image-name:1.0.0 .
+docker docker buildx bake -f docker-bake.hcl
 
 # Log in to Docker Hub
 docker login
