@@ -1,3 +1,7 @@
+variable "USERNAME" {
+    default = "ashleykza"
+}
+
 variable "APP" {
     default = "stable-diffusion-webui"
 }
@@ -12,7 +16,7 @@ variable "CU_VERSION" {
 
 target "default" {
     dockerfile = "Dockerfile"
-    tags = ["ashleykza/${APP}:${RELEASE}"]
+    tags = ["${USERNAME}/${APP}:${RELEASE}"]
     args = {
         RELEASE = "${RELEASE}"
         INDEX_URL = "https://download.pytorch.org/whl/cu${CU_VERSION}"
