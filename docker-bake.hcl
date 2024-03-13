@@ -26,6 +26,6 @@ target "default" {
         DREAMBOOTH_COMMIT = "30bfbc289a1d90153a3e5a5ab92bf5636e66b210"
         KOHYA_VERSION = "v23.0.8"
         RUNPODCTL_VERSION = "v1.14.2"
-        VENV_PATH = "/workspace/venvs/stable-diffusion-webui"
+        VENV_PATH = "/workspace/venvs/${APP}"
     }
 }
