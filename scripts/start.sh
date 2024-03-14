@@ -81,7 +81,7 @@ start_jupyter() {
       --FileContentsManager.delete_to_trash=False \
       --ContentsManager.allow_hidden=True \
       --ServerApp.terminado_settings='{"shell_command":["/bin/bash"]}' \
-      --ServerApp.token=${JUPYTER_LAB_PASSWORD} \
+      --ServerApp.token=${JUPYTER_PASSWORD} \
       --ServerApp.allow_origin=* \
       --ServerApp.preferred_dir=/workspace &> /workspace/logs/jupyter.log &
     echo "Jupyter Lab started"
