@@ -64,11 +64,11 @@ export_env_vars() {
 
 start_jupyter() {
     # Default to not using a password
-    JUPYTER_LAB_PASSWORD=""
+    JUPYTER_PASSWORD=""
 
     # Allow a password to be set by providing the JUPYTER_PASSWORD environment variable
-    if [[ ${JUPYTER_PASSWORD} ]]; then
-        JUPYTER_LAB_PASSWORD=${JUPYTER_PASSWORD}
+    if [[ ${JUPYTER_LAB_PASSWORD} ]]; then
+        JUPYTER_PASSWORD=${JUPYTER_LAB_PASSWORD}
     fi
 
     echo "Starting Jupyter Lab..."
