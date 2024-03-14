@@ -1,5 +1,9 @@
 # Docker image for A1111 Stable Diffusion Web UI, Kohya_ss and ComfyUI
 
+[![GitHub Repo](https://img.shields.io/badge/github-repo-green?logo=github)](https://github.com/ashleykleynhans/stable-diffusion-docker)
+[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ashleykza/stable-diffusion-webui?logo=docker&label=dockerhub&color=blue)](https://hub.docker.com/repository/docker/ashleykza/stable-diffusion-webui)
+[![RunPod.io Template](https://img.shields.io/badge/runpod_template-deploy-9b4ce6?logo=linuxcontainers&logoColor=9b4ce6)](https://runpod.io/gsc?template=ya6013lj5a&ref=2xxro4sy)
+
 Now with SDXL support.
 
 ## Installs
