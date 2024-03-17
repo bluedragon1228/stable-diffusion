@@ -186,8 +186,11 @@ ARG KOHYA_VERSION
 RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
     cd /kohya_ss && \
     git checkout ${KOHYA_VERSION} && \
-    git submodule update --init --recursive && \
-    python3 -m venv --system-site-packages venv && \
+    git submodule update --init --recursive
+
+WORKDIR /kohya_ss
+COPY kohya_ss/requirements* ./
+RUN python3 -m venv --system-site-packages venv && \
     source venv/bin/activate && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
     pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
@@ -229,7 +232,7 @@ RUN pip3 uninstall -y tensorboard tb-nightly && \
         jupyterlab_widgets \
         ipykernel \
         ipywidgets \
-        tensorboard==2.15.2 tensorflow==2.15.0.post1 \
+        tensorboard==2.14.1 tensorflow==2.14.0 \
         gdown \
         OhMyRunPod && \
     pip3 cache purge
