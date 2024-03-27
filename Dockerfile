@@ -259,7 +259,7 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
 
 # Install CivitAI Model Downloader
 RUN git clone --depth=1 https://github.com/ashleykleynhans/civitai-downloader.git && \
-    mv civitai-downloader/download.sh /usr/local/bin/download-model && \
+    mv civitai-downloader/download.py /usr/local/bin/download-model && \
     chmod +x /usr/local/bin/download-model
 
 # Copy Stable Diffusion Web UI config files
