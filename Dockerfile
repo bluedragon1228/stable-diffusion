@@ -261,7 +261,7 @@ RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/scr
 ARG CIVITAI_DOWNLOADER_VERSION
 RUN git clone https://github.com/ashleykleynhans/civitai-downloader.git && \
     cd civitai-downloader && \
-    git checkout tags/{CIVITAI_DOWNLOADER_VERSION} && \
+    git checkout tags/${CIVITAI_DOWNLOADER_VERSION} && \
     cp download.py /usr/local/bin/download-model && \
     chmod +x /usr/local/bin/download-model && \
     cd .. && \
