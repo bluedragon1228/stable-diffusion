@@ -54,6 +54,7 @@ Now with SDXL support.
 * [croc](https://github.com/schollz/croc)
 * [rclone](https://rclone.org/)
 * [Application Manager](https://github.com/ashleykleynhans/app-manager)
+* [CivitAI Downloader](https://github.com/ashleykleynhans/civitai-downloader)
 
 ## Available on RunPod
 
