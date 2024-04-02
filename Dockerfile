@@ -144,7 +144,6 @@ RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python3 -m install && \
     cd /stable-diffusion-webui/extensions/sd_civitai_extension && \
-    git checkout tags/${CIVITAI_BROWSER_PLUS_VERSION} && \
     pip3 install -r requirements.txt && \
     deactivate
 
@@ -156,6 +155,7 @@ RUN source /venv/bin/activate && \
 # Install dependencies for Civitai Browser+ extension
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
+    git checkout tags/${CIVITAI_BROWSER_PLUS_VERSION} && \
     pip3 install send2trash ZipUnicode fake-useragent && \
     deactivate
 
