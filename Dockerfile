@@ -123,11 +123,12 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/Uminosachi/sd-webui-inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer && \
     git clone --depth=1 https://github.com/civitai/sd_civitai_extension.git extensions/sd_civitai_extension && \
-    git clone --depth=1 https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus
+    git clone https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus
 
 # Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
 # After Detailer, and CivitAI Browser+ extensions
 ARG CONTROLNET_COMMIT
+ARG CIVITAI_BROWSER_PLUS_VERSION
 RUN source /venv/bin/activate && \
     pip3 install basicsr && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
@@ -143,6 +144,7 @@ RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/adetailer && \
     python3 -m install && \
     cd /stable-diffusion-webui/extensions/sd_civitai_extension && \
+    git checkout tags/${CIVITAI_BROWSER_PLUS_VERSION} && \
     pip3 install -r requirements.txt && \
     deactivate
 
