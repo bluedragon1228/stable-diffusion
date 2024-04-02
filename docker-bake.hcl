@@ -28,7 +28,7 @@ target "default" {
         CIVITAI_BROWSER_PLUS_VERSION = "v3.5.2"
         KOHYA_VERSION = "v23.0.15"
         RUNPODCTL_VERSION = "v1.14.2"
-        CIVITAI_DOWNLOADER_VERSION = "2.0.2"
+        CIVITAI_DOWNLOADER_VERSION = "2.1.0"
         VENV_PATH = "/workspace/venvs/${APP}"
     }
 }
