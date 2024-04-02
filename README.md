@@ -28,7 +28,7 @@ Now with SDXL support.
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.443
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v24.3.0
+  https://github.com/Bing-su/adetailer) v24.3.5
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor) (replaces roop)

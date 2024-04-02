@@ -132,7 +132,6 @@ ARG CIVITAI_BROWSER_PLUS_VERSION
 RUN source /venv/bin/activate && \
     pip3 install basicsr && \
     cd /stable-diffusion-webui/extensions/sd-webui-controlnet && \
-    git checkout ${CONTROLNET_COMMIT} && \
     pip3 install -r requirements.txt && \
     cd /stable-diffusion-webui/extensions/deforum && \
     pip3 install -r requirements.txt && \
@@ -155,8 +154,7 @@ RUN source /venv/bin/activate && \
 # Install dependencies for Civitai Browser+ extension
 RUN source /venv/bin/activate && \
     cd /stable-diffusion-webui/extensions/sd-civitai-browser-plus && \
-    git checkout tags/${CIVITAI_BROWSER_PLUS_VERSION} && \
-    pip3 install send2trash ZipUnicode fake-useragent && \
+    pip3 install send2trash beautifulsoup4 ZipUnicode fake-useragent packaging pysocks && \
     deactivate
 
 # Set Dreambooth extension version
