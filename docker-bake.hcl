@@ -7,7 +7,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "4.3.0"
+    default = "4.3.1"
 }
 
 variable "CU_VERSION" {
@@ -26,7 +26,7 @@ target "default" {
         CONTROLNET_COMMIT = "eb451a007f7040288e865f96e9ee0842aa6ef91c"
         DREAMBOOTH_COMMIT = "30bfbc289a1d90153a3e5a5ab92bf5636e66b210"
         CIVITAI_BROWSER_PLUS_VERSION = "v3.5.2"
-        KOHYA_VERSION = "v23.1.0"
+        KOHYA_VERSION = "v23.1.1"
         RUNPODCTL_VERSION = "v1.14.2"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
         VENV_PATH = "/workspace/venvs/${APP}"
