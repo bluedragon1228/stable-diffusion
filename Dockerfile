@@ -1,4 +1,6 @@
-FROM ashleykza/runpod-base:1.0.0-cuda11.8.0-torch2.1.2
+
+git
+giFROM ashleykza/runpod-base:1.0.0-cuda11.8.0-torch2.1.2
 
 RUN mkdir -p /sd-models
 
@@ -19,6 +21,9 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && \
     cd /stable-diffusion-webui && \
     git checkout tags/${WEBUI_VERSION}
 
+ARG TORCH_VERSION
+ARG XFORMERS_VERSION
+ARG INDEX_URL
 WORKDIR /stable-diffusion-webui
 RUN python3 -m venv --system-site-packages /venv && \
     source /venv/bin/activate && \
