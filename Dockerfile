@@ -1,6 +1,4 @@
-
-git
-giFROM ashleykza/runpod-base:1.0.0-cuda11.8.0-torch2.1.2
+FROM ashleykza/runpod-base:1.0.0-cuda11.8.0-torch2.1.2
 
 RUN mkdir -p /sd-models
 
