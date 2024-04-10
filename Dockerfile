@@ -223,6 +223,7 @@ WORKDIR /
 RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager && \
     cd /app-manager && \
     npm install
+COPY app-manager/config.json /app-manager/public/config.json
 
 # Install Jupyter, Tensorboad, gdown and OhMyRunPod
 RUN pip3 uninstall -y tensorboard tb-nightly && \
