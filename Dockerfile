@@ -158,7 +158,7 @@ COPY app-manager/config.json /app-manager/public/config.json
 
 # Install Jupyter, Tensorboad, gdown and OhMyRunPod
 RUN pip3 uninstall -y tensorboard tb-nightly && \
-        tensorboard==2.14.1 tensorflow==2.14.0 \
+        tensorboard==2.14.1 tensorflow==2.14.0
 
 # Install CivitAI Model Downloader
 ARG CIVITAI_DOWNLOADER_VERSION
