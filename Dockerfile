@@ -1,76 +1,4 @@
-# Stage 1: Base
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as base
-
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Europe/London \
-    PYTHONUNBUFFERED=1 \
-    SHELL=/bin/bash
-
-# Install Ubuntu packages
-RUN apt update && \
-    apt -y upgrade && \
-    apt install -y --no-install-recommends \
-        build-essential \
-        software-properties-common \
-        python3.10-venv \
-        python3-pip \
-        python3-tk \
-        python3-dev \
-        nodejs \
-        npm \
-        bash \
-        dos2unix \
-        git \
-        git-lfs \
-        ncdu \
-        nginx \
-        net-tools \
-        inetutils-ping \
-        openssh-server \
-        libglib2.0-0 \
-        libsm6 \
-        libgl1 \
-        libxrender1 \
-        libxext6 \
-        ffmpeg \
-        wget \
-        curl \
-        psmisc \
-        rsync \
-        vim \
-        zip \
-        unzip \
-        p7zip-full \
-        htop \
-        screen \
-        tmux \
-        bc \
-        pkg-config \
-        plocate \
-        libcairo2-dev \
-        libgoogle-perftools4 \
-        libtcmalloc-minimal4 \
-        apt-transport-https \
-        ca-certificates && \
-    update-ca-certificates && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-
-# Set Python
-RUN ln -s /usr/bin/python3.10 /usr/bin/python
-
-# Install Torch, xformers and tensorrt
-ARG INDEX_URL
-ARG TORCH_VERSION
-ARG XFORMERS_VERSION
-RUN pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} &&  \
-    pip3 install --no-cache-dir tensorrt
-
-# Stage 2: Install applications
-FROM base as setup
+FROM ashleykza/1.0.0-cuda11.8.0-torch2.1.2
 
 RUN mkdir -p /sd-models
 
@@ -227,36 +155,7 @@ COPY app-manager/config.json /app-manager/public/config.json
 
 # Install Jupyter, Tensorboad, gdown and OhMyRunPod
 RUN pip3 uninstall -y tensorboard tb-nightly && \
-    pip3 install -U --no-cache-dir jupyterlab \
-        jupyterlab_widgets \
-        ipykernel \
-        ipywidgets \
         tensorboard==2.14.1 tensorflow==2.14.0 \
-        gdown \
-        OhMyRunPod && \
-    pip3 cache purge
-
-
-# Install RunPod File Uploader
-RUN curl -sSL https://github.com/kodxana/RunPod-FilleUploader/raw/main/scripts/installer.sh -o installer.sh && \
-    chmod +x installer.sh && \
-    ./installer.sh
-
-# Install rclone
-RUN curl https://rclone.org/install.sh | bash
-
-# Install runpodctl
-ARG RUNPODCTL_VERSION
-RUN wget "https://github.com/runpod/runpodctl/releases/download/${RUNPODCTL_VERSION}/runpodctl-linux-amd64" -O runpodctl && \
-    chmod a+x runpodctl && \
-    mv runpodctl /usr/local/bin
-
-# Install croc
-RUN curl https://getcroc.schollz.com | bash
-
-# Install speedtest CLI
-RUN curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash && \
-    apt install speedtest
 
 # Install CivitAI Model Downloader
 ARG CIVITAI_DOWNLOADER_VERSION
@@ -282,7 +181,6 @@ RUN rm -f /etc/ssh/ssh_host_*
 
 # NGINX Proxy
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
-COPY nginx/502.html /usr/share/nginx/html/502.html
 
 # Set template version
 ARG RELEASE
