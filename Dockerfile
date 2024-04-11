@@ -149,16 +149,18 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/Comfy
     pip3 cache purge && \
     deactivate
 
-# Install Application Manager
-WORKDIR /
-RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager && \
-    cd /app-manager && \
-    npm install
-COPY app-manager/config.json /app-manager/public/config.json
-
 # Install Tensorboard
 RUN pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard==2.14.1 tensorflow==2.14.0
+
+# Install Application Manager
+AEF APP_MANAGER_VERSION
+WORKDIR /
+RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager && \
+    cd /app-manager && \
+    git checkout tags/${APP_MANAGER_VERSION} && \
+    npm install
+COPY app-manager/config.json /app-manager/public/config.json
 
 # Install CivitAI Model Downloader
 ARG CIVITAI_DOWNLOADER_VERSION
