@@ -154,7 +154,7 @@ RUN pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard==2.14.1 tensorflow==2.14.0
 
 # Install Application Manager
-AEF APP_MANAGER_VERSION
+ARG APP_MANAGER_VERSION
 WORKDIR /
 RUN git clone https://github.com/ashleykleynhans/app-manager.git /app-manager && \
     cd /app-manager && \
