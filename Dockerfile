@@ -1,4 +1,5 @@
-FROM ashleykza/runpod-base:1.0.0-cuda11.8.0-torch2.1.2
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
 
 RUN mkdir -p /sd-models
 
