@@ -22,7 +22,7 @@ Now with SDXL support.
 * xformers 0.0.23.post1
 * Jupyter Lab
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.8.0
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.9.0
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [ControlNet extension](
@@ -37,7 +37,7 @@ Now with SDXL support.
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v23.1.3
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v23.1.5
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 * [sd_xl_base_1.0.safetensors](
