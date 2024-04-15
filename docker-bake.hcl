@@ -1,4 +1,8 @@
-variable "USERNAME" {
+variable "REGISTRY" {
+    default = "docker.io"
+}
+
+variable "REGISTRY_USER" {
     default = "ashleykza"
 }
 
@@ -32,7 +36,7 @@ variable "TORCH_VERSION" {
 
 target "default" {
     dockerfile = "Dockerfile"
-    tags = ["${USERNAME}/${APP}:${RELEASE}"]
+    tags = ["${REGISTRY}/${REGISTRY_USER}/${APP}:${RELEASE}"]
     args = {
         RELEASE = "${RELEASE}"
         BASE_IMAGE = "${BASE_IMAGE_REPOSITORY}:${BASE_IMAGE_VERSION}-cuda${CUDA_VERSION}-torch${TORCH_VERSION}"
