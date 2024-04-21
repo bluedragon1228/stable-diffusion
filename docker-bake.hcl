@@ -11,7 +11,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "5.0.1"
+    default = "5.1.0"
 }
 
 variable "CU_VERSION" {
@@ -44,10 +44,10 @@ target "default" {
         TORCH_VERSION = "${TORCH_VERSION}+cu${CU_VERSION}"
         XFORMERS_VERSION = "0.0.23.post1+cu${CU_VERSION}"
         WEBUI_VERSION = "v1.9.0"
-        CONTROLNET_COMMIT = "eb451a007f7040288e865f96e9ee0842aa6ef91c"
+        CONTROLNET_COMMIT = "59d5998823daabd73d6339b3d21c9cdda27b0286"
         DREAMBOOTH_COMMIT = "45a12fe5950bf93205b6ef2b7511eb94052a241f"
         CIVITAI_BROWSER_PLUS_VERSION = "v3.5.4"
-        KOHYA_VERSION = "v23.1.3"
+        KOHYA_VERSION = "v24.0.6"
         APP_MANAGER_VERSION = "1.0.2"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
         VENV_PATH = "/workspace/venvs/${APP}"

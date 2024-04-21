@@ -26,7 +26,7 @@ Now with SDXL support.
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.443
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.445
 * [After Detailer extension](
   https://github.com/Bing-su/adetailer) v24.4.0
 * [Locon extension](
@@ -37,7 +37,8 @@ Now with SDXL support.
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v23.1.3
+* [TensorRT extension](https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT)
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.0.6
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 * [sd_xl_base_1.0.safetensors](
