@@ -37,6 +37,7 @@ Now with SDXL support.
 * [Infinite Image Browsing extension](https://github.com/zanllp/sd-webui-infinite-image-browsing)
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
+* [TensorRT extension](https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.0.6
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
