@@ -22,7 +22,7 @@ Now with SDXL support.
 * xformers 0.0.23.post1
 * Jupyter Lab
 * [Automatic1111 Stable Diffusion Web UI](
-  https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.9.1
+  https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.9.2
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [ControlNet extension](
