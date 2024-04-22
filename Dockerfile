@@ -55,8 +55,8 @@ RUN git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extension
     git clone --depth=1 https://github.com/Uminosachi/sd-webui-inpaint-anything.git extensions/inpaint-anything && \
     git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetailer && \
     git clone --depth=1 https://github.com/civitai/sd_civitai_extension.git extensions/sd_civitai_extension && \
-    git clone https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus && \
-    git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git extensions/Stable-Diffusion-WebUI-TensorRT
+    git clone https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus
+#    git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git extensions/Stable-Diffusion-WebUI-TensorRT
 
 # Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
 # After Detailer, and CivitAI Browser+ extensions
@@ -105,18 +105,18 @@ RUN source /venv/bin/activate && \
     deactivate
 
 # Install dependencies for TensorRT extension \
-RUN source /venv/bin/activate && \
-    cd /stable-diffusion-webui/extensions/Stable-Diffusion-WebUI-TensorRT && \
-    pip3 install importlib_metadata && \
-    pip3 uninstall -y tensorrt && \
-    pip3 install --no-cache-dir nvidia-cudnn-cu11==8.9.4.25 && \
-    pip3 install --no-cache-dir --pre --extra-index-url https://pypi.nvidia.com tensorrt==9.0.1.post11.dev4 && \
-    pip3 uninstall -y nvidia-cudnn-cu11 && \
-    pip3 install protobuf==3.20.2 && \
-    pip3 install polygraphy --extra-index-url https://pypi.ngc.nvidia.com && \
-    pip3 install onnx-graphsurgeon --extra-index-url https://pypi.ngc.nvidia.com && \
-    pip3 install install optimum && \
-    deactivate
+#RUN source /venv/bin/activate && \
+#    cd /stable-diffusion-webui/extensions/Stable-Diffusion-WebUI-TensorRT && \
+#    pip3 install importlib_metadata && \
+#    pip3 uninstall -y tensorrt && \
+#    pip3 install --no-cache-dir nvidia-cudnn-cu11==8.9.4.25 && \
+#    pip3 install --no-cache-dir --pre --extra-index-url https://pypi.nvidia.com tensorrt==9.0.1.post11.dev4 && \
+#    pip3 uninstall -y nvidia-cudnn-cu11 && \
+#    pip3 install protobuf==3.20.2 && \
+#    pip3 install polygraphy --extra-index-url https://pypi.ngc.nvidia.com && \
+#    pip3 install onnx-graphsurgeon --extra-index-url https://pypi.ngc.nvidia.com && \
+#    pip3 install install optimum && \
+#    deactivate
 
 # Add inswapper model for the ReActor extension
 RUN mkdir -p /stable-diffusion-webui/models/insightface && \
