@@ -38,7 +38,7 @@ Now with SDXL support.
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
 * [TensorRT extension](https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT)
-* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.1.1
+* [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.1.2
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
 * [sd_xl_base_1.0.safetensors](
