@@ -2,6 +2,7 @@
   "applications": [
     "A1111",
     "Kohya_ss",
-    "ComfyUI"
+    "ComfyUI",
+    "InvokeAI"
   ]
 }
