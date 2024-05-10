@@ -114,13 +114,14 @@ REGISTRY=ghcr.io REGISTRY_USER=myuser RELEASE=my-release docker buildx \
 docker run -d \
   --gpus all \
   -v /workspace \
+  -p 2999:2999 \
   -p 3000:3001 \
   -p 3010:3011 \
   -p 3020:3021 \
   -p 6006:6066 \
   -p 8000:8000 \
   -p 8888:8888 \
-  -p 2999:2999 \
+  -p 9090:9090 \
   -e JUPYTER_PASSWORD=Jup1t3R! \
   -e ENABLE_TENSORBOARD=1 \
   ashleykza/stable-diffusion-webui:latest
