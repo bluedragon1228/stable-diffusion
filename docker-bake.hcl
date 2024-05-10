@@ -49,7 +49,7 @@ target "default" {
         CIVITAI_BROWSER_PLUS_VERSION = "v3.5.4"
         KOHYA_VERSION = "v24.1.3"
         INVOKEAI_VERSION = "4.2.0"
-        APP_MANAGER_VERSION = "1.0.2"
+        APP_MANAGER_VERSION = "1.1.0"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
         VENV_PATH = "/workspace/venvs/${APP}"
     }
