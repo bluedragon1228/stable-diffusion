@@ -1,6 +1,6 @@
 <div align="center">
 
-# Docker image for A1111 Stable Diffusion Web UI, Kohya_ss and ComfyUI
+# Docker image for A1111 Stable Diffusion Web UI, Kohya_ss, ComfyUI and InvokeAI
 
 [![GitHub Repo](https://img.shields.io/badge/github-repo-green?logo=github)](https://github.com/ashleykleynhans/stable-diffusion-docker)
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ashleykza/stable-diffusion-webui?logo=docker&label=dockerhub&color=blue)](https://hub.docker.com/repository/docker/ashleykza/stable-diffusion-webui)
@@ -41,6 +41,7 @@ Now with SDXL support.
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.1.2
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
+* [InvokeAI](https://github.com/invoke-ai/InvokeAI) v4.2.0
 * [sd_xl_base_1.0.safetensors](
   https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors)
 * [sd_xl_refiner_1.0.safetensors](
@@ -134,6 +135,7 @@ You can obviously substitute the image name and tag with your own.
 | 3000         | 3001          | A1111 Stable Diffusion Web UI |
 | 3010         | 3011          | Kohya_ss                      |
 | 3020         | 3021          | ComfyUI                       |
+| 9090         | 9090          | InvokeAI                      |
 | 6006         | 6066          | Tensorboard                   |
 | 8000         | 8000          | Application Manager           |
 | 8888         | 8888          | Jupyter Lab                   |
@@ -159,6 +161,7 @@ killing the services to view the logs
 | Stable Diffusion Web UI | /workspace/logs/webui.log    |
 | Kohya SS                | /workspace/logs/kohya_ss.log |
 | ComfyUI                 | /workspace/logs/comfyui.log  |
+| InvokeAI                | /workspace/logs/invokeai.log |
 
 ## Community and Contributing
 

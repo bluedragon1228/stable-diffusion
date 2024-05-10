@@ -165,6 +165,16 @@ RUN git clone https://github.com/ltdrdata/ComfyUI-Manager.git custom_nodes/Comfy
     pip3 cache purge && \
     deactivate
 
+# Install InvokeAI
+ARG INVOKEAI_VERSION
+WORKDIR /InvokeAI
+RUN python3 -m venv --system-site-packages venv && \
+    source venv/bin/activate && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
+    pip3 install InvokeAI[xformers]==${INVOKEAI_VERSION} --use-pep517 && \
+    deactivate
+
 # Install Tensorboard
 RUN pip3 uninstall -y tensorboard tb-nightly && \
     pip3 install tensorboard==2.14.1 tensorflow==2.14.0
@@ -196,6 +206,9 @@ ADD https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.c
 
 # Copy ComfyUI Extra Model Paths (to share models with A1111)
 COPY comfyui/extra_model_paths.yaml /ComfyUI/
+
+# Copy InvokeAI config file
+COPY invokeai/invokeai.yaml /InvokeAI/
 
 # Remove existing SSH host keys
 RUN rm -f /etc/ssh/ssh_host_*

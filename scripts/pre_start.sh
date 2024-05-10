@@ -35,6 +35,11 @@ sync_apps() {
     rsync --remove-source-files -rlptDu /ComfyUI/ /workspace/ComfyUI/
     rm -rf /ComfyUI
 
+    # Sync InvokeAI to workspace to support Network volumes
+    echo "Syncing InvokeAI to workspace, please wait..."
+    rsync --remove-source-files -rlptDu /InvokeAI/ /workspace/InvokeAI/
+    rm -rf /InvokeAI
+
     # Sync Application Manager to workspace to support Network volumes
     echo "Syncing Application Manager to workspace, please wait..."
     rsync --remove-source-files -rlptDu /app-manager/ /workspace/app-manager/
@@ -53,6 +58,9 @@ fix_venvs() {
 
     echo "Fixing ComfyUI venv..."
     /fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
+
+    echo "Fixing InvokeAI venv..."
+    /fix_venv.sh /InvokeAI/venv /workspace/InvokeAI/venv
 }
 
 link_models() {
@@ -117,6 +125,7 @@ else
     /start_a1111.sh
     /start_kohya.sh
     /start_comfyui.sh
+    /start_invokeai.sh
 fi
 
 if [ ${ENABLE_TENSORBOARD} ];
