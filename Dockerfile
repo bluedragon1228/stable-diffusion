@@ -126,27 +126,6 @@ RUN mkdir -p /stable-diffusion-webui/models/insightface && \
 # Configure ReActor to use the GPU instead of the CPU
 RUN echo "CUDA" > /stable-diffusion-webui/extensions/sd-webui-reactor/last_device.txt
 
-# Install Kohya_ss
-ARG KOHYA_VERSION
-RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
-    cd /kohya_ss && \
-    git checkout ${KOHYA_VERSION} && \
-    git submodule update --init --recursive
-
-WORKDIR /kohya_ss
-COPY kohya_ss/requirements* ./
-RUN python3 -m venv --system-site-packages venv && \
-    source venv/bin/activate && \
-    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
-    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
-    pip3 install bitsandbytes==0.43.0 \
-        tensorboard==2.14.1 tensorflow==2.14.0 \
-        wheel packaging tensorrt && \
-    pip3 install tensorflow[and-cuda] && \
-    pip3 install -r requirements.txt && \
-    pip3 cache purge && \
-    deactivate
-
 # Install ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
 WORKDIR /ComfyUI
@@ -173,6 +152,27 @@ RUN python3 -m venv --system-site-packages venv && \
     pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
     pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
     pip3 install InvokeAI[xformers]==${INVOKEAI_VERSION} --use-pep517 && \
+    deactivate
+
+# Install Kohya_ss
+ARG KOHYA_VERSION
+RUN git clone https://github.com/bmaltais/kohya_ss.git /kohya_ss && \
+    cd /kohya_ss && \
+    git checkout ${KOHYA_VERSION} && \
+    git submodule update --init --recursive
+
+WORKDIR /kohya_ss
+COPY kohya_ss/requirements* ./
+RUN python3 -m venv --system-site-packages venv && \
+    source venv/bin/activate && \
+    pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL} && \
+    pip3 install --no-cache-dir xformers==${XFORMERS_VERSION} --index-url ${INDEX_URL} && \
+    pip3 install bitsandbytes==0.43.0 \
+        tensorboard==2.14.1 tensorflow==2.14.0 \
+        wheel packaging tensorrt && \
+    pip3 install tensorflow[and-cuda] && \
+    pip3 install -r requirements.txt && \
+    pip3 cache purge && \
     deactivate
 
 # Install Tensorboard
