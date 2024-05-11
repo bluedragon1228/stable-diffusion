@@ -11,7 +11,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "5.5.0"
+    default = "5.5.1"
 }
 
 variable "CU_VERSION" {
@@ -47,7 +47,7 @@ target "default" {
         CONTROLNET_COMMIT = "59d5998823daabd73d6339b3d21c9cdda27b0286"
         DREAMBOOTH_COMMIT = "45a12fe5950bf93205b6ef2b7511eb94052a241f"
         CIVITAI_BROWSER_PLUS_VERSION = "v3.5.4"
-        KOHYA_VERSION = "v24.1.3"
+        KOHYA_VERSION = "v24.1.4"
         INVOKEAI_VERSION = "4.2.0"
         APP_MANAGER_VERSION = "1.1.0"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
