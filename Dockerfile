@@ -66,6 +66,9 @@ COPY app-manager/config.json /app-manager/public/config.json
 ARG CIVITAI_DOWNLOADER_VERSION
 RUN /install_civitai_model_downloader.sh
 
+# Cleanup installation scripts
+RUN rm -f /install_*.sh
+
 # Remove existing SSH host keys
 RUN rm -f /etc/ssh/ssh_host_*
 

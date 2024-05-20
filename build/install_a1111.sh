@@ -22,6 +22,7 @@ python3 -c "from launch import prepare_environment; prepare_environment()" --ski
 
 # Cache the Stable Diffusion Models
 # SDXL models result in OOM kills with 8GB system memory, need 30GB+ to cache these
+mv /cache-sd-model.py /stable-diffusion-webui/
 python3 cache-sd-model.py \
     --no-half-vae \
     --no-half \
