@@ -2,6 +2,7 @@
 set -e
 
 # Create and activate venv
+mkdir /InvokeAI
 cd /InvokeAI
 python3 -m venv --system-site-packages venv
 source venv/bin/activate
