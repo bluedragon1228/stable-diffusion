@@ -20,22 +20,6 @@ pip3 install tensorflow[and-cuda]
 pip3 install -r requirements_versions.txt
 python3 -c "from launch import prepare_environment; prepare_environment()" --skip-torch-cuda-test
 
-# Cache the Stable Diffusion Models
-# SDXL models result in OOM kills with 8GB system memory, need 30GB+ to cache these
-mv /cache-sd-model.py /stable-diffusion-webui/
-python3 cache-sd-model.py \
-    --no-half-vae \
-    --no-half \
-    --xformers \
-    --use-cpu=all \
-    --ckpt /sd-models/sd_xl_base_1.0.safetensors
-python3 cache-sd-model.py \
-    --no-half-vae \
-    --no-half \
-    --xformers \
-    --use-cpu=all \
-    --ckpt /sd-models/sd_xl_refiner_1.0.safetensors
-
 # Clone the Automatic1111 Extensions
 git clone https://github.com/d8ahazard/sd_dreambooth_extension.git extensions/sd_dreambooth_extension
 git clone https://github.com/Mikubill/sd-webui-controlnet.git extensions/sd-webui-controlnet
