@@ -24,7 +24,7 @@ ARG INDEX_URL
 ARG CONTROLNET_COMMIT
 ARG CIVITAI_BROWSER_PLUS_VERSION
 ARG DREAMBOOTH_COMMIT
-COPY a1111/cache-sd-model.py a1111/install-automatic.py ./
+COPY a1111/cache-sd-model.py ./
 RUN /install_a1111.sh
 
 # Copy Stable Diffusion Web UI config files
