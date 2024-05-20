@@ -30,8 +30,10 @@ RUN /install_a1111.sh
 # SDXL models result in OOM kills with 8GB system memory, need 30GB+ to cache these
 WORKDIR /stable-diffusion-webui
 COPY a1111/cache-sd-model.py ./
-RUN python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors
-RUN python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors
+RUN source /venv/bin/activate && \
+    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
+    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
+    deactivate
 
 # Copy Stable Diffusion Web UI config files
 COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
