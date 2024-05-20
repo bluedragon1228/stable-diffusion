@@ -31,9 +31,11 @@ RUN /install_a1111.sh
 WORKDIR /stable-diffusion-webui
 COPY a1111/cache-sd-model.py ./
 RUN source /venv/bin/activate && \
-    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
-    python3 cache-sd-model.py --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
+    python3 cache-sd-model.py --skip-torch-cuda-test --use-cpu=all --ckpt /sd-models/sd_xl_base_1.0.safetensors && \
+    python3 cache-sd-model.py --skip-torch-cuda-test --use-cpu=all --ckpt /sd-models/sd_xl_refiner_1.0.safetensors && \
     deactivate
+
+# RUN cd /stable-diffusion-webui && python cache.py --use-cpu=all --ckpt /model.safetensors
 
 # Copy Stable Diffusion Web UI config files
 COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.json /stable-diffusion-webui/
