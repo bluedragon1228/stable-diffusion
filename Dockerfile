@@ -58,6 +58,8 @@ COPY invokeai/invokeai.yaml /InvokeAI/
 
 # Install Kohya_ss
 ARG KOHYA_VERSION
+ARG KOHYA_TORCH_VERSION
+ARG KOHYA_XFORMERS_VERSION
 COPY kohya_ss/requirements* ./
 RUN /install_kohya.sh
 
