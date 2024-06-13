@@ -19,33 +19,28 @@ sync_apps() {
         # Sync main venv to workspace to support Network volumes
         echo "Syncing main venv to workspace, please wait..."
         mkdir -p ${VENV_PATH}
-        rsync --remove-source-files -rlptDu /venv/ ${VENV_PATH}/
+        mv /venv/* ${VENV_PATH}/
         rm -rf /venv
 
         # Sync application to workspace to support Network volumes
         echo "Syncing ${APP} to workspace, please wait..."
-        rsync --remove-source-files -rlptDu /${APP}/ /workspace/${APP}/
-        rm -rf /stable-diffusion-webui
+        mv /${APP} /workspace/${APP}
 
         # Sync Kohya_ss to workspace to support Network volumes
         echo "Syncing Kohya_ss to workspace, please wait..."
-        rsync --remove-source-files -rlptDu /kohya_ss/ /workspace/kohya_ss/
-        rm -rf /kohya_ss
+        mv /kohya_ss /workspace/kohya_ss
 
         # Sync ComfyUI to workspace to support Network volumes
         echo "Syncing ComfyUI to workspace, please wait..."
-        rsync --remove-source-files -rlptDu /ComfyUI/ /workspace/ComfyUI/
-        rm -rf /ComfyUI
+        mv /ComfyUI /workspace/ComfyUI
 
         # Sync InvokeAI to workspace to support Network volumes
         echo "Syncing InvokeAI to workspace, please wait..."
-        rsync --remove-source-files -rlptDu /InvokeAI/ /workspace/InvokeAI/
-        rm -rf /InvokeAI
+        mv /InvokeAI /workspace/InvokeAI
 
         # Sync Application Manager to workspace to support Network volumes
         echo "Syncing Application Manager to workspace, please wait..."
-        rsync --remove-source-files -rlptDu /app-manager/ /workspace/app-manager/
-        rm -rf /app-manager
+        mv /app-manager /workspace/app-manager
 
         echo "${TEMPLATE_VERSION}" > ${DOCKER_IMAGE_VERSION_FILE}
         echo "${VENV_PATH}" > "/workspace/${APP}/venv_path"
