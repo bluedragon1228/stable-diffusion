@@ -4,6 +4,7 @@ set -e
 # Clone the repo
 git clone https://github.com/comfyanonymous/ComfyUI.git /ComfyUI
 cd /ComfyUI
+git checkout ${COMFYUI_COMMIT}
 
 # Create and activate the venv
 python3 -m venv --system-site-packages venv

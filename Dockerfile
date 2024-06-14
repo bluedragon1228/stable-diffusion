@@ -44,6 +44,7 @@ COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.j
 ADD https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.csv /stable-diffusion-webui/styles.csv
 
 # Install ComfyUI
+ARG COMFYUI_COMMIT
 RUN /install_comfyui.sh
 
 # Copy ComfyUI Extra Model Paths (to share models with A1111)
