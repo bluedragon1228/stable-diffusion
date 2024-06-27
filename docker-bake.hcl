@@ -11,7 +11,7 @@ variable "APP" {
 }
 
 variable "RELEASE" {
-    default = "6.1.1"
+    default = "6.2.0"
 }
 
 variable "CU_VERSION" {
@@ -23,7 +23,7 @@ variable "BASE_IMAGE_REPOSITORY" {
 }
 
 variable "BASE_IMAGE_VERSION" {
-    default = "1.4.0"
+    default = "1.6.0"
 }
 
 variable "CUDA_VERSION" {
@@ -51,7 +51,7 @@ target "default" {
         KOHYA_TORCH_VERSION = "2.1.2+cu${CU_VERSION}"
         KOHYA_XFORMERS_VERSION = "0.0.23.post1"
         COMFYUI_COMMIT = "5eb98f00927ace00b6b3d01ed9c76b113fc4ec9f"
-        INVOKEAI_VERSION = "4.2.4"
+        INVOKEAI_VERSION = "4.2.5"
         APP_MANAGER_VERSION = "1.1.0"
         CIVITAI_DOWNLOADER_VERSION = "2.1.0"
         VENV_PATH = "/workspace/venvs/${APP}"

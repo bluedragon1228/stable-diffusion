@@ -41,7 +41,7 @@ Now with SDXL support.
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.1.4
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
-* [InvokeAI](https://github.com/invoke-ai/InvokeAI) v4.2.4
+* [InvokeAI](https://github.com/invoke-ai/InvokeAI) v4.2.5
 * [sd_xl_base_1.0.safetensors](
   https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors)
 * [sd_xl_refiner_1.0.safetensors](
