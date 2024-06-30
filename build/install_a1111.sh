@@ -32,10 +32,9 @@ git clone --depth=1 https://github.com/Bing-su/adetailer.git extensions/adetaile
 git clone --depth=1 https://github.com/civitai/sd_civitai_extension.git extensions/sd_civitai_extension
 git clone https://github.com/BlafKing/sd-civitai-browser-plus.git extensions/sd-civitai-browser-plus
 git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git extensions/Stable-Diffusion-WebUI-TensorRT
+git clone --depth=1 https://github.com/mcmonkeyprojects/sd-dynamic-thresholding extensions/sd-dynamic-thresholding
 
-# Install dependencies for Deforum, ControlNet, ReActor, Infinite Image Browsing,
-# After Detailer, and CivitAI Browser+ extensions
-#pip3 install basicsr
+# Install dependencies for the various extensions
 cd /stable-diffusion-webui/extensions/sd-webui-controlnet
 pip3 install -r requirements.txt
 cd /stable-diffusion-webui/extensions/deforum
@@ -49,6 +48,8 @@ cd /stable-diffusion-webui/extensions/adetailer
 python3 -m install
 cd /stable-diffusion-webui/extensions/sd_civitai_extension
 pip3 install -r requirements.txt
+cd /stable-diffusion-webui/extensions/sd-dynamic-thresholding
+pip3 install .
 
 # Install dependencies for inpaint anything extension
 pip3 install segment_anything lama_cleaner
@@ -67,7 +68,7 @@ cd /stable-diffusion-webui/extensions/sd_dreambooth_extension
 pip3 install -r requirements.txt
 pip3 cache purge
 
-# Install dependencies for TensorRT extension \
+# Install dependencies for TensorRT extension
 cd /stable-diffusion-webui/extensions/Stable-Diffusion-WebUI-TensorRT
 pip3 install importlib_metadata
 pip3 uninstall -y tensorrt

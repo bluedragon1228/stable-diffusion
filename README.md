@@ -28,7 +28,7 @@ Now with SDXL support.
 * [ControlNet extension](
   https://github.com/Mikubill/sd-webui-controlnet) v1.1.449
 * [After Detailer extension](
-  https://github.com/Bing-su/adetailer) v24.5.1
+  https://github.com/Bing-su/adetailer) v24.6.0
 * [Locon extension](
   https://github.com/ashleykleynhans/a1111-sd-webui-locon)
 * [ReActor extension](https://github.com/Gourieff/sd-webui-reactor)
@@ -38,6 +38,7 @@ Now with SDXL support.
 * [CivitAI extension](https://github.com/civitai/sd_civitai_extension)
 * [CivitAI Browser+ extension](https://github.com/BlafKing/sd-civitai-browser-plus)
 * [TensorRT extension](https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT)
+* [Stable Diffusion Dynamic Thresholding (CFG Scale Fix) extension](https://github.com/mcmonkeyprojects/sd-dynamic-thresholding)
 * [Kohya_ss](https://github.com/bmaltais/kohya_ss) v24.1.4
 * [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 * [ComfyUI Manager](https://github.com/ltdrdata/ComfyUI-Manager)
@@ -154,8 +155,8 @@ You can obviously substitute the image name and tag with your own.
 
 ## Logs
 
-Stable Diffusion Web UI, Kohya SS, and ComfyUI each create log
-files, and you can tail the log files instead of
+Stable Diffusion Web UI, Kohya SS, ComfyUI, and InvokeAI each
+create log files, and you can tail the log files instead of
 killing the services to view the logs
 
 | Application             | Log file                     |
@@ -164,6 +165,12 @@ killing the services to view the logs
 | Kohya SS                | /workspace/logs/kohya_ss.log |
 | ComfyUI                 | /workspace/logs/comfyui.log  |
 | InvokeAI                | /workspace/logs/invokeai.log |
+
+For example:
+
+```bash
+tail -f  /workspace/logs/webui.log
+```
 
 ## Community and Contributing
 
