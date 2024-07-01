@@ -119,6 +119,10 @@ then
     echo "   ComfyUI"
     echo "   ---------------------------------------------"
     echo "   /start_comfyui.sh"
+    echo ""
+    echo "   InvokeAI"
+    echo "   ---------------------------------------------"
+    echo "   /start_invokeai.sh"
 else
     /start_a1111.sh
     /start_kohya.sh
