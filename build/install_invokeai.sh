@@ -6,7 +6,7 @@ mkdir /InvokeAI
 cd /InvokeAI
 mkdir -p /venvs
 python3 -m venv --system-site-packages /venvs/invokeai
-source venv/bin/activate
+source /venvs/invokeai/bin/activate
 
 # Install torch and xformers
 pip3 install --no-cache-dir torch==${TORCH_VERSION} torchvision torchaudio --index-url ${INDEX_URL}
