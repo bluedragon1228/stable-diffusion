@@ -54,6 +54,7 @@ ADD https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.c
 # Stage 3: ComfyUI Installation
 FROM a1111-install AS comfyui-install
 ARG COMFYUI_COMMIT
+WORKDIR /
 COPY --chmod=755 build/install_comfyui.sh ./
 RUN /install_comfyui.sh && rm /install_comfyui.sh
 
@@ -63,6 +64,7 @@ COPY comfyui/extra_model_paths.yaml /ComfyUI/
 # Stage 4: InvokeAI Installation
 FROM comfyui-install AS invokeai-install
 ARG INVOKEAI_VERSION
+WORKDIR /
 COPY --chmod=755 build/install_invokeai.sh ./
 RUN /install_invokeai.sh && rm /install_invokeai.sh
 
@@ -74,6 +76,7 @@ FROM invokeai-install AS kohya-install
 ARG KOHYA_VERSION
 ARG KOHYA_TORCH_VERSION
 ARG KOHYA_XFORMERS_VERSION
+WORKDIR /
 COPY kohya_ss/requirements* ./
 COPY --chmod=755 build/install_kohya.sh ./
 RUN /install_kohya.sh && rm /install_kohya.sh
@@ -83,12 +86,14 @@ COPY kohya_ss/accelerate.yaml ./
 
 # Stage 6: Tensorboard Installation
 FROM kohya-install AS tensorboard-install
+WORKDIR /
 COPY --chmod=755 build/install_tensorboard.sh ./
 RUN /install_tensorboard.sh && rm /install_tensorboard.sh
 
 # Stage 7: Application Manager Installation
 FROM tensorboard-install AS appmanager-install
 ARG APP_MANAGER_VERSION
+WORKDIR /
 COPY --chmod=755 build/install_app_manager.sh ./
 RUN /install_app_manager.sh && rm /install_app_manager.sh
 COPY app-manager/config.json /app-manager/public/config.json
@@ -96,6 +101,7 @@ COPY app-manager/config.json /app-manager/public/config.json
 # Stage 8: CivitAI Model Downloader Installation
 FROM appmanager-install AS civitai-dl-install
 ARG CIVITAI_DOWNLOADER_VERSION
+WORKDIR /
 COPY --chmod=755 build/install_civitai_model_downloader.sh ./
 RUN /install_civitai_model_downloader.sh && rm /install_civitai_model_downloader.sh
 
