@@ -1,6 +1,7 @@
+
 # Stage 1: Base Image
 ARG BASE_IMAGE
-FROM ${BASE_IMAGE} as base
+FROM ${BASE_IMAGE} AS base
 
 RUN mkdir -p /sd-models
 
@@ -16,7 +17,7 @@ COPY sdxl_vae.safetensors /sd-models/sdxl_vae.safetensors
 WORKDIR /
 
 # Stage 2: A1111 Installation
-FROM base as a1111-install
+FROM base AS a1111-install
 ARG WEBUI_VERSION
 ARG TORCH_VERSION
 ARG XFORMERS_VERSION
@@ -45,7 +46,7 @@ COPY a1111/relauncher.py a1111/webui-user.sh a1111/config.json a1111/ui-config.j
 ADD https://raw.githubusercontent.com/Douleb/SDXL-750-Styles-GPT4-/main/styles.csv /stable-diffusion-webui/styles.csv
 
 # Stage 3: ComfyUI Installation
-FROM a1111-install as comfyui-install
+FROM a1111-install AS comfyui-install
 ARG COMFYUI_COMMIT
 COPY --chmod=755 build/install_comfyui.sh ./
 RUN /install_comfyui.sh && rm /install_comfyui.sh
@@ -54,7 +55,7 @@ RUN /install_comfyui.sh && rm /install_comfyui.sh
 COPY comfyui/extra_model_paths.yaml /ComfyUI/
 
 # Stage 4: InvokeAI Installation
-FROM comfyui-install as invokeai-install
+FROM comfyui-install AS invokeai-install
 ARG INVOKEAI_VERSION
 COPY --chmod=755 build/install_invokeai.sh ./
 RUN /install_invokeai.sh && rm /install_invokeai.sh
@@ -63,7 +64,7 @@ RUN /install_invokeai.sh && rm /install_invokeai.sh
 COPY invokeai/invokeai.yaml /InvokeAI/
 
 # Stage 5: Kohya_ss Installation
-FROM invokeai-install as kohya-install
+FROM invokeai-install AS kohya-install
 ARG KOHYA_VERSION
 ARG KOHYA_TORCH_VERSION
 ARG KOHYA_XFORMERS_VERSION
@@ -75,25 +76,25 @@ RUN /install_kohya.sh && rm /install_kohya.sh
 COPY kohya_ss/accelerate.yaml ./
 
 # Stage 6: Tensorboard Installation
-FROM kohya-install as tensorboard-install
+FROM kohya-install AS tensorboard-install
 COPY --chmod=755 build/install_tensorboard.sh ./
 RUN /install_tensorboard.sh && rm /install_tensorboard.sh
 
 # Stage 7: Application Manager Installation
-FROM tensorboard-install as appmanager-install
+FROM tensorboard-install AS appmanager-install
 ARG APP_MANAGER_VERSION
 COPY --chmod=755 build/install_app_manager.sh ./
 RUN /install_app_manager.sh && rm /install_app_manager.sh
 COPY app-manager/config.json /app-manager/public/config.json
 
 # Stage 8: CivitAI Model Downloader Installation
-FROM appmanager-install as civitai-dl-install
+FROM appmanager-install AS civitai-dl-install
 ARG CIVITAI_DOWNLOADER_VERSION
 COPY --chmod=755 build/install_civitai_model_downloader.sh ./
 RUN /install_civitai_model_downloader.sh && rm /install_civitai_model_downloader.sh
 
 # Stage 9: Finalise Image
-FROM civitai-dl-install as final
+FROM civitai-dl-install AS final
 
 # Remove existing SSH host keys
 RUN rm -f /etc/ssh/ssh_host_*
