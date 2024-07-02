@@ -93,7 +93,7 @@ else
 fi
 
 # Start application manager
-cd /workspace/app-manager
+cd /app-manager
 npm start > /workspace/logs/app-manager.log 2>&1 &
 
 if [[ ${DISABLE_AUTOLAUNCH} ]]
