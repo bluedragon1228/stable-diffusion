@@ -20,7 +20,8 @@ Now with SDXL support.
 * Python 3.10.12
 * Torch 2.3.0
 * xformers 0.0.26.post1
-* Jupyter Lab
+* [Jupyter Lab](https://github.com/jupyterlab/jupyterlab)
+* [code-server](https://github.com/coder/code-server)
 * [Automatic1111 Stable Diffusion Web UI](
   https://github.com/AUTOMATIC1111/stable-diffusion-webui) 1.9.4
 * [Dreambooth extension](
@@ -120,6 +121,7 @@ docker run -d \
   -p 3010:3011 \
   -p 3020:3021 \
   -p 6006:6066 \
+  -p 7777:7777 \
   -p 8000:8000 \
   -p 8888:8888 \
   -p 9090:9090 \
@@ -139,6 +141,7 @@ You can obviously substitute the image name and tag with your own.
 | 3020         | 3021          | ComfyUI                       |
 | 9090         | 9090          | InvokeAI                      |
 | 6006         | 6066          | Tensorboard                   |
+| 7777         | 7777          | Code Server                   |
 | 8000         | 8000          | Application Manager           |
 | 8888         | 8888          | Jupyter Lab                   |
 | 2999         | 2999          | RunPod File Uploader          |

@@ -13,34 +13,33 @@ else
     EXISTING_VERSION="0.0.0"
 fi
 
+rsync_with_progress() {
+    stdbuf -i0 -o0 -e0 rsync -au --info=progress2 "$@" | stdbuf -i0 -o0 -e0 tr '\r' '\n' | stdbuf -i0 -o0 -e0 grep -oP '\d+%|\d+.\d+[mMgG]' | tqdm --bar-format='{l_bar}{bar}' --total=100 --unit='%' > /dev/null
+}
+
 sync_apps() {
     # Only sync if the DISABLE_SYNC environment variable is not set
     if [ -z "${DISABLE_SYNC}" ]; then
         # Sync main venv to workspace to support Network volumes
         echo "Syncing main venv to workspace, please wait..."
         mkdir -p ${VENV_PATH}
-        mv /venv/* ${VENV_PATH}/
-        rm -rf /venv
+        rsync_with_progress --remove-source-files /venv/ ${VENV_PATH}/
 
         # Sync application to workspace to support Network volumes
         echo "Syncing ${APP} to workspace, please wait..."
-        mv /${APP} /workspace/${APP}
+        rsync_with_progress --remove-source-files /${APP}/ /workspace/${APP}/
 
         # Sync Kohya_ss to workspace to support Network volumes
         echo "Syncing Kohya_ss to workspace, please wait..."
-        mv /kohya_ss /workspace/kohya_ss
+        rsync_with_progress --remove-source-files /kohya_ss/ /workspace/kohya_ss/
 
         # Sync ComfyUI to workspace to support Network volumes
         echo "Syncing ComfyUI to workspace, please wait..."
-        mv /ComfyUI /workspace/ComfyUI
+        rsync_with_progress --remove-source-files /ComfyUI/ /workspace/ComfyUI/
 
         # Sync InvokeAI to workspace to support Network volumes
         echo "Syncing InvokeAI to workspace, please wait..."
-        mv /InvokeAI /workspace/InvokeAI
-
-        # Sync Application Manager to workspace to support Network volumes
-        echo "Syncing Application Manager to workspace, please wait..."
-        mv /app-manager /workspace/app-manager
+        rsync_with_progress --remove-source-files /InvokeAI/ /workspace/InvokeAI/
 
         echo "${TEMPLATE_VERSION}" > ${DOCKER_IMAGE_VERSION_FILE}
         echo "${VENV_PATH}" > "/workspace/${APP}/venv_path"
@@ -48,17 +47,11 @@ sync_apps() {
 }
 
 fix_venvs() {
-    echo "Fixing Stable Diffusion Web UI venv..."
+    echo "Fixing A1111 Web UI venv..."
     /fix_venv.sh /venv ${VENV_PATH}
-
-    echo "Fixing Kohya_ss venv..."
-    /fix_venv.sh /kohya_ss/venv /workspace/kohya_ss/venv
 
     echo "Fixing ComfyUI venv..."
     /fix_venv.sh /ComfyUI/venv /workspace/ComfyUI/venv
-
-    echo "Fixing InvokeAI venv..."
-    /fix_venv.sh /InvokeAI/venv /workspace/InvokeAI/venv
 }
 
 link_models() {
