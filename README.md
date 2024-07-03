@@ -27,7 +27,7 @@ Now with SDXL support.
 * [Dreambooth extension](
   https://github.com/d8ahazard/sd_dreambooth_extension) 1.0.14
 * [ControlNet extension](
-  https://github.com/Mikubill/sd-webui-controlnet) v1.1.449
+  https://github.com/Mikubill/sd-webui-controlnet) v1.1.452
 * [After Detailer extension](
   https://github.com/Bing-su/adetailer) v24.6.0
 * [Locon extension](
